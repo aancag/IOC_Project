@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">myCarpooling</string>
+    <string name="username">Username</string>
+    <string name="usernameHint">Enter your username!</string>
+    <string name="password">Password</string>
+    <string name="rePassword">Re-type password</string>
+    <string name="passwordHint">Enter your password</string>
+    <string name="repasswordHint">Re-type your password</string>
+    <string name="passenger">Passenger</string>
+    <string name="driver">Driver</string>
+    <string name="logIn">Log in!</string>
+    <string name="signUp">Sign up!</string>
+    <string name="next">Next</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="birthDate">Birth Date</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_display_message">Log in!</string>
+    <string name="hello_world">castraveti!</string>
+    <string name="bio">Bio (Optional)</string>
+    <string name="lookingTo">Looking to</string>    
+    <string name="city">City</string>
+    <string name="commute_period">Commute Period</string>
+    <string name="seats_no">Free seats</string>
+    <string name="start_location">Start location</string>
+    <string name="end_location">End location</string>
+    <string name="ride">Ride</string>
+    <string name="drive">Drive</string>
+    
+    
+    <string name="title_activity_sign_up_activity1">Sign up step 1</string>
+    <string name="title_activity_sign_up_activity2">Sign up step 2</string>
+    <string name="title_activity_sign_up_activity3">Sign up step 3</string>
+
+</resources>
