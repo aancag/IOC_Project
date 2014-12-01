@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
+    <!-- TODO: create custom icon - Ia-ma, nene! -->
+    
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -18,7 +20,7 @@
         android:text="@string/username" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -35,7 +37,7 @@
         android:text="@string/password" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -47,6 +49,7 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:onClick="logIN"
         android:text="@string/logIn" />
 
@@ -54,7 +57,19 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/signUp" 
         android:onClick="signUP"/>
+    
+    <!-- This TextView will appear if login was unsuccessful-->
+    <TextView 
+        android:id="@+id/loginFailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loginFailed" 
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:textColor="#FC4A4A"
+        android:textStyle="italic"/>
 
 </LinearLayout>

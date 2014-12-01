@@ -30,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/signUpPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -45,19 +45,32 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/signUpRePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword" 
         android:hint="@string/repasswordHint"/>
 
+        
+    <!-- This TextView will appear if password and retyped password don't match -->
+    <TextView 
+        android:id="@+id/passMatchFailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/passMatchFailed" 
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:textColor="#FC4A4A"
+        android:textStyle="italic"/>
+    
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="end"
         android:text="@string/next"
         android:onClick="signUP2" />
+
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.BARcode.mycarpooling;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,15 +8,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
 
-	 public final static String EXTRA_MESSAGE = "com.BARcode.mycarpooling.MESSAGE";
+	 public final static String LOGIN_INFO = "com.BARcode.mycarpooling.LOGIN_INFO";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    	
+		// hide action bar on start page
+		ActionBar actionBar = getActionBar(); 
+		actionBar.hide();
+        
         setContentView(R.layout.activity_main);
     }
 
@@ -41,10 +48,26 @@ public class MainActivity extends Activity {
     //cand apesi butonul de logIN se intra in metoda asta 
     public void logIN(View view){
     	Intent intent = new Intent(this, LogInActivity.class);
-    	EditText editText = (EditText) findViewById(R.id.editText1);
-    	String message = editText.getText().toString();
-    	intent.putExtra(EXTRA_MESSAGE, message);
-    	startActivity(intent);
+    	// get username 
+    	EditText userNameET = (EditText) findViewById(R.id.userName);
+    	// get password
+    	EditText passwordET = (EditText) findViewById(R.id.password);
+    	
+    	String userName = userNameET.getText().toString();
+    	String password = passwordET.getText().toString();
+    	
+    	// check login
+    	TextView loginFailed = (TextView) findViewById(R.id.loginFailed);
+    	if (userName.equals("") || password.equals("")) {
+    		loginFailed.setVisibility(View.VISIBLE);
+    	} else {
+    		loginFailed.setVisibility(View.INVISIBLE);
+    		
+    		// TODO: connect to database	
+    		
+    		intent.putExtra(LOGIN_INFO, userName);
+        	startActivity(intent);
+    	}
     }
     
     public void signUP(View view){

@@ -8,25 +8,18 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class LogInActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
-		Intent intent = getIntent();
-		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 		
-		 // Create the text view
-	    TextView textView = new TextView(this);
-	    textView.setTextSize(40);
-	    textView.setText(message);
-
-	    // Set the text view as the activity layout
-	    setContentView(textView);
-
+		Intent intent = getIntent();
+		String userName = intent.getStringExtra(MainActivity.LOGIN_INFO);
+		
+		// TODO: take from database info -> show on screen
+		
 	}
 	
 	@Override

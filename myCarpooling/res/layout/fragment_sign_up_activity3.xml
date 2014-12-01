@@ -65,20 +65,21 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:checked="true"
-            android:text="Driver" />
+            android:text="@string/drive" />
 
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="114dp"
             android:layout_height="54dp"
-            android:text="Rider" />
+            android:text="@string/ride" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/next" />
+        android:layout_gravity="end"
+        android:onClick="finishRegistration"
+        android:text="@string/finishRegistration" />
 
 </LinearLayout>

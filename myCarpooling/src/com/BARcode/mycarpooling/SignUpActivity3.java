@@ -47,4 +47,9 @@ public class SignUpActivity3 extends Activity {
 			return rootView;
 		}
 	}
+	
+	// TODO: finish registration - insert info into database
+	public void finishRegistration(View view) {
+		
+	}
 }

@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class SignUpActivity1 extends Activity {
 
@@ -15,7 +17,6 @@ public class SignUpActivity1 extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//Intent intent = getIntent();
-		//TODO - check if passwords are equals
 		setContentView(R.layout.fragment_sign_up_activity1);
 	}
 
@@ -32,8 +33,25 @@ public class SignUpActivity1 extends Activity {
 	}
 
 	public void signUP2(View view){
-		Intent intent = new Intent(this, SignUpActivity2.class);
-		startActivity(intent);
+		// TODO: check if user with this username already exists in DB
+		
+		// check if passwords are equal
+		EditText passwordET = (EditText) findViewById(R.id.signUpPassword);
+		EditText retypedPasswordET = (EditText) findViewById(R.id.signUpRePassword);
+				
+		String password = passwordET.getText().toString();
+		String retypedPassword = retypedPasswordET.getText().toString(); 
+
+		TextView passMatchFailed = (TextView) findViewById(R.id.passMatchFailed);
+		if (!password.equals(retypedPassword)) {
+			passMatchFailed.setVisibility(View.VISIBLE);
+			passwordET.setText("");
+			retypedPasswordET.setText("");
+		} else {
+			passMatchFailed.setVisibility(View.INVISIBLE);
+			Intent intent = new Intent(this, SignUpActivity2.class);
+			startActivity(intent);
+		}
 	}
 	
 	/**

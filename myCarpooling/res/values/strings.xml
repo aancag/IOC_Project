@@ -5,9 +5,9 @@
     <string name="username">Username</string>
     <string name="usernameHint">Enter your username!</string>
     <string name="password">Password</string>
-    <string name="rePassword">Re-type password</string>
+    <string name="rePassword">Retype password</string>
     <string name="passwordHint">Enter your password</string>
-    <string name="repasswordHint">Re-type your password</string>
+    <string name="repasswordHint">Retype your password</string>
     <string name="passenger">Passenger</string>
     <string name="driver">Driver</string>
     <string name="logIn">Log in!</string>
@@ -28,6 +28,9 @@
     <string name="end_location">End location</string>
     <string name="ride">Ride</string>
     <string name="drive">Drive</string>
+    <string name="loginFailed">Login Failed! Please check your credentials!</string>    
+    <string name="passMatchFailed">Retyped password doesn\'t match password! Please retype</string>
+    <string name="finishRegistration">Finish</string>
     
     
     <string name="title_activity_sign_up_activity1">Sign up step 1</string>
