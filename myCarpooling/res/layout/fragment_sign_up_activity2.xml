@@ -61,6 +61,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:onClick="signUP3"
-        android:text="@string/next" />
+        android:text="@string/finishRegistration" />
 
 </LinearLayout>

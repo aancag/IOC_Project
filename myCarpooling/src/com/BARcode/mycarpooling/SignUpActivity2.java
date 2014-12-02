@@ -31,7 +31,7 @@ public class SignUpActivity2 extends Activity {
 	
 	//butonul de next te redirecteaza spre pagina de signup3
 	public void signUP3(View view){
-		Intent intent = new Intent(this, SignUpActivity3.class);
+		Intent intent = new Intent(this, ChooseRole.class);
 		startActivity(intent);
 	}
 	
@@ -40,7 +40,6 @@ public class SignUpActivity2 extends Activity {
 	 * A placeholder fragment containing a simple view.
 	 */
 	public static class PlaceholderFragment extends Fragment {
-
 		public PlaceholderFragment() {
 		}
 

@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="18"
-        android:targetSdkVersion="21" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -47,12 +47,8 @@
                 android:value="com.BARcode.mycarpooling.SignUpActivity1" />
         </activity>
         <activity
-            android:name=".SignUpActivity3"
-            android:label="@string/title_activity_sign_up_activity3"
-            android:parentActivityName=".SignUpActivity2" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.BARcode.mycarpooling.SignUpActivity2" />
+            android:name=".ChooseRole"
+            android:label="@string/title_activity_choose_role" >
         </activity>
     </application>
 

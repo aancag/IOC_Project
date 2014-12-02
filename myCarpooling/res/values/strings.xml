@@ -3,7 +3,7 @@
 
     <string name="app_name">myCarpooling</string>
     <string name="username">Username</string>
-    <string name="usernameHint">Enter your username!</string>
+    <string name="usernameHint">Enter your username</string>
     <string name="password">Password</string>
     <string name="rePassword">Retype password</string>
     <string name="passwordHint">Enter your password</string>
@@ -16,11 +16,14 @@
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>
     <string name="birthDate">Birth Date</string>
+    <string name="email">E-mail</string>
+    <string name="emailHint">Enter your e-mail</string>
+    <string name="phone">Phone number</string>
+    <string name="phoneHint">Enter your phone number</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_display_message">Log in!</string>
-    <string name="hello_world">castraveti!</string>
     <string name="bio">Bio (Optional)</string>
-    <string name="lookingTo">Looking to</string>    
+    <string name="lookingTo">Looking to</string>
     <string name="city">City</string>
     <string name="commute_period">Commute Period</string>
     <string name="seats_no">Free seats</string>
@@ -28,13 +31,12 @@
     <string name="end_location">End location</string>
     <string name="ride">Ride</string>
     <string name="drive">Drive</string>
-    <string name="loginFailed">Login Failed! Please check your credentials!</string>    
-    <string name="passMatchFailed">Retyped password doesn\'t match password! Please retype</string>
+    <string name="loginFailed">Login Failed! Please check your credentials!</string>
+    <string name="passMatchFailed">Retyped password doesn\'t match password or all fields are not completed! Please retype</string>
     <string name="finishRegistration">Finish</string>
-    
-    
     <string name="title_activity_sign_up_activity1">Sign up step 1</string>
     <string name="title_activity_sign_up_activity2">Sign up step 2</string>
-    <string name="title_activity_sign_up_activity3">Sign up step 3</string>
+    <string name="title_activity_choose_role">ChooseRole</string>
+
 
 </resources>

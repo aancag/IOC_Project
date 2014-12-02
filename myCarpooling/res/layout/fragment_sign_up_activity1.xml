@@ -12,13 +12,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/userNameSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/usernameHint" >
-
         <requestFocus />
     </EditText>
 
@@ -51,9 +50,38 @@
         android:ems="10"
         android:inputType="textPassword" 
         android:hint="@string/repasswordHint"/>
-
+    
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
         
+     <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="@string/emailHint" />
+       <TextView
+         android:id="@+id/textView5"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/phone"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <EditText
+         android:id="@+id/phone"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:ems="10"
+         android:inputType="phone"
+         android:hint="@string/phoneHint" />
+     
     <!-- This TextView will appear if password and retyped password don't match -->
+   
     <TextView 
         android:id="@+id/passMatchFailed"
         android:layout_width="wrap_content"
@@ -63,14 +91,13 @@
         android:layout_gravity="center"
         android:textColor="#FC4A4A"
         android:textStyle="italic"/>
-    
+
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="@string/next"
-        android:onClick="signUP2" />
-
+        android:layout_gravity="right"
+        android:onClick="signUP2"
+        android:text="@string/next" />
 
 </LinearLayout>

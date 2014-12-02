@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 		actionBar.hide();
         
         setContentView(R.layout.activity_main);
+        
     }
 
     @Override
@@ -47,7 +48,7 @@ public class MainActivity extends Activity {
     
     //cand apesi butonul de logIN se intra in metoda asta 
     public void logIN(View view){
-    	Intent intent = new Intent(this, LogInActivity.class);
+    	Intent intent = new Intent(this, ChooseRole.class);
     	// get username 
     	EditText userNameET = (EditText) findViewById(R.id.userName);
     	// get password
@@ -65,13 +66,14 @@ public class MainActivity extends Activity {
     		
     		// TODO: connect to database	
     		
-    		intent.putExtra(LOGIN_INFO, userName);
-        	startActivity(intent);
+    	intent.putExtra(LOGIN_INFO, userName);
+        startActivity(intent);
     	}
     }
     
     public void signUP(View view){
     	Intent intent = new Intent(this, SignUpActivity1.class);
     	startActivity(intent);
+    	
     }
 }
