@@ -34,6 +34,42 @@
     <string name="title_activity_sign_up_activity1">Sign up step 1</string>
     <string name="title_activity_sign_up_activity2">Sign up step 2</string>
     <string name="title_activity_sign_up_activity3">Sign up step 3</string>
-    <string name="title_activity_sign_in">SignInActivity</string>
+
+    <string name="firstNameHint">Enter your First Name</string>
+    <string name="lastNameHint">Enter your Last Name</string>
+    <string name="email">E-mail</string>
+    <string name="emailHint">Enter your e-mail</string>
+    <string name="phone">Phone number</string>
+    <string name="phoneHint">Enter your phone number</string>
+    <string name="cityHint"> Enter your City</string>
+    <string name="smoker">Smoker</string>
+    <string name="ranking">Ranking</string>
+    <string name="availableCarpools">Available Carpools</string>
+    <string name="history">Show history</string>
+    <string name="addCarpool">Add new Carpool</string>
+    <string name="addEditCar">Add/Edit Car</string>
+    <string name="nrInmatriculare">Numar inmatriculare</string>
+    <string name="brand">Brand</string>
+    <string name="color">Color</string>
+    <string name="seatsNo">Seats number</string>
+    <string name="anAchizitie">An achizitie</string>
+    <string name="addCarButton">Add car</string>
+    <string name="source">Source</string>
+    <string name="destination">Destination</string>
+    <string name="date">Date</string>
+    <string name="hour">Hour</string>
+    <string name="itinerary">Itinerary</string>
+    <string name="price">Price</string>
+    <string name="duration">Duration</string>
+    <string name="commutePeriod">Commute Period</string>
+    <string name="search">Search</string>
+    <string name="advancedOptions">Advanced Options</string>
+
+    <string name="title_activity_choose_role">ChooseRole</string>
+    <string name="title_activity_passenger">Passenger</string>
+    <string name="title_activity_driver">Driver</string>
+    <string name="title_activity_add_car">AddCar</string>
+    <string name="title_activity_add_carpool">AddCarpool</string>
+    <string name="title_activity_add_carpool2">AddCarpool2</string>
 
 </resources>

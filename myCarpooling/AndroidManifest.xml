@@ -49,17 +49,39 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.BARcode.mycarpooling.SignUpActivity1" />
         </activity>
+
         <activity
-            android:name=".SignUpActivity3"
-            android:label="@string/title_activity_sign_up_activity3"
-            android:parentActivityName=".SignUpActivity2" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.BARcode.mycarpooling.SignUpActivity2" />
+            android:name=".ChooseRole"
+            android:label="@string/title_activity_choose_role" >
         </activity>
+        
         <activity
-            android:name=".SignInActivity"
-            android:label="@string/title_activity_sign_in" >
+            android:name=".Passenger"
+            android:label="@string/title_activity_passenger" >
+        </activity>
+        
+        <activity
+            android:name=".Driver"
+            android:label="@string/title_activity_driver"
+            android:parentActivityName=".ChooseRole" >
+        </activity>
+        
+        <activity
+            android:name=".AddCar"
+            android:label="@string/title_activity_add_car"
+            android:parentActivityName=".Driver" >
+        </activity>
+        
+        <activity
+            android:name=".AddCarpool"
+            android:label="@string/title_activity_add_carpool"
+            android:parentActivityName=".Driver" >
+        </activity>
+        
+        <activity
+            android:name=".AddCarpool2"
+            android:label="@string/title_activity_add_carpool2"
+            android:parentActivityName=".AddCarpool"  >
         </activity>
     </application>
 

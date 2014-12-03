@@ -12,11 +12,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/firstName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" >
+        android:inputType="textPersonName"
+        android:hint="@string/firstNameHint" >
     </EditText>
 
     <TextView
@@ -27,11 +28,36 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/lastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName" 
+        android:hint="@string/lastNameHint"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/city"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/cityHint" >
+
+        <requestFocus />
+    </EditText>
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/smoker" />
 
     <TextView
         android:id="@+id/textView3"
@@ -43,8 +69,8 @@
 
     <CalendarView
         android:id="@+id/calendarView1"
-        android:layout_width="201dp"
-        android:layout_height="206dp"
+        android:layout_width="179dp"
+        android:layout_height="161dp"
         android:layout_gravity="center" />
 
     <EditText
@@ -61,6 +87,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:onClick="signUP3"
-        android:text="@string/next" />
+        android:text="@string/finishRegistration" />
 
 </LinearLayout>

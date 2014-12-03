@@ -43,8 +43,10 @@ public class MainActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
 
-		setContentView(R.layout.activity_main);
-	}
+        
+        setContentView(R.layout.activity_main);
+        
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,7 +69,7 @@ public class MainActivity extends Activity {
 	
 	// cand apesi butonul de logIN se intra in metoda asta
 	public void logIN(View view) {
-		loginIntent = new Intent(this, LogInActivity.class);
+		loginIntent = new Intent(this, ChooseRole.class);
 		// get username
 		EditText userNameET = (EditText) findViewById(R.id.userName);
 		// get password

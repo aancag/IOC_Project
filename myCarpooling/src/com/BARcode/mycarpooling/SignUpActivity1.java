@@ -36,17 +36,32 @@ public class SignUpActivity1 extends Activity {
 		// TODO: check if user with this username already exists in DB
 		
 		// check if passwords are equal
-		EditText passwordET = (EditText) findViewById(R.id.signUpPassword);
+		EditText usernameET = (EditText)findViewById(R.id.userNameSignUp);
+		EditText passwordET = (EditText)findViewById(R.id.signUpPassword);
 		EditText retypedPasswordET = (EditText) findViewById(R.id.signUpRePassword);
-				
+		EditText emailET = (EditText) findViewById(R.id.email);
+		EditText phoneET = (EditText) findViewById(R.id.phone);
+		
+		
+		String username = usernameET.getText().toString();
 		String password = passwordET.getText().toString();
 		String retypedPassword = retypedPasswordET.getText().toString(); 
-
+		
+		String email = emailET.getText().toString();
+		String phone = phoneET.getText().toString();
+	
+		boolean allFieldsCompleted = username.equals("") || password.equals("")
+				|| retypedPassword.equals("") || email.equals("") 
+				|| phone.equals("");
+		
 		TextView passMatchFailed = (TextView) findViewById(R.id.passMatchFailed);
-		if (!password.equals(retypedPassword)) {
+
+		if (!password.equals(retypedPassword) || allFieldsCompleted) {
 			passMatchFailed.setVisibility(View.VISIBLE);
+			usernameET.setText("");
 			passwordET.setText("");
 			retypedPasswordET.setText("");
+			emailET.setText("");
 		} else {
 			passMatchFailed.setVisibility(View.INVISIBLE);
 			Intent intent = new Intent(this, SignUpActivity2.class);
