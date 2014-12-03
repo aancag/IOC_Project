@@ -87,8 +87,6 @@ public class MainActivity extends Activity {
 
 			new SignInActivity().execute(userName, password);
 
-			//intent.putExtra(LOGIN_INFO, userName);
-			//startActivity(intent);
 		}
 	}
 
