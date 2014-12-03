@@ -7,33 +7,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class ChooseRole extends Activity {
+public class Driver extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choose_role);
+		setContentView(R.layout.activity_driver);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.choose_role, menu);
+		getMenuInflater().inflate(R.menu.driver, menu);
 		return true;
 	}
+
+	public void addCar(View view){
+		Intent intent = new Intent(this, AddCar.class);
+    	startActivity(intent);
+	}
+	public void addCarpool(View view){
+		Intent intent = new Intent(this, AddCarpool.class);
+    	startActivity(intent);
+	}
 	
-	//cand dai click pe poza driver-ului
-	public void LogoDriver(View view){
-		Intent intent = new Intent(this, Driver.class);
-		startActivity(intent);
-	}
-
-	//cand dai click pe poza passenger-ului
-	public void LogoPassenger(View view){
-		Intent intent = new Intent(this, Passenger.class);
-		startActivity(intent);
-	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will

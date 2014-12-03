@@ -24,7 +24,8 @@
         android:layout_height="163dp"
         android:layout_gravity="center"
         android:src="@drawable/passenger" 
-        android:contentDescription="@string/passenger"/>
+        android:contentDescription="@string/passenger"
+        android:onClick="LogoPassenger"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -40,6 +41,7 @@
         android:layout_height="189dp"
         android:layout_gravity="center"
         android:src="@drawable/driver" 
-        android:contentDescription="@string/driver"/>
+        android:contentDescription="@string/driver"
+        android:onClick="LogoDriver"/>
 
 </LinearLayout>
