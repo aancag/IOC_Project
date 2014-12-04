@@ -1,5 +1,8 @@
 package databaseModels;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Carpool {
 	
 	private String username;
@@ -12,6 +15,25 @@ public class Carpool {
 	private int duration;
 	private String itinerary;
 	private int commutePeriod;
+	
+	public Carpool(JSONObject carpoolDB){
+		try {
+			this.username = carpoolDB.getString("username");
+			this.source = carpoolDB.getString("source");
+			this.destination = carpoolDB.getString("destionation");
+			this.date = carpoolDB.getString("date");
+			this.time = carpoolDB.getString("time");
+			this.availableSeats = carpoolDB.getInt("avseats");
+			this.price = carpoolDB.getInt("price");
+			this.duration = carpoolDB.getInt("duration");
+			this.itinerary = carpoolDB.getString("itinerary");
+			this.commutePeriod = carpoolDB.getInt("commper");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public String getUsername() {
 		return username;

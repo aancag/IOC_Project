@@ -34,7 +34,7 @@ public class Driver extends Activity {
 		User user = new User(data);
 		
 		
-		availableCarpool.setText(user.getEmail() + " - ");
+		availableCarpool.setText("");
 	
 	}
 

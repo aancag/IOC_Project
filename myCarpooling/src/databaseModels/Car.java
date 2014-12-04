@@ -1,5 +1,8 @@
 package databaseModels;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Car {
 	
 	private String carNumber;
@@ -7,6 +10,21 @@ public class Car {
 	private String colour;
 	private int seats;
 	private int year;
+	
+	public Car(JSONObject carDB){
+		try {
+			this.carNumber = carDB.getString("carnumber");
+			this.brand = carDB.getString("brand");
+			this.colour = carDB.getString("colour");
+			this.seats = carDB.getInt("seats");
+			this.year = carDB.getInt("year");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	public String getCarNumber() {
 		return carNumber;

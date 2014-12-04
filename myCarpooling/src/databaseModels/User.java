@@ -21,23 +21,23 @@ public class User {
 	private String city;
 	private int smoker;
 	
-	public User(JSONObject user){
+	public User(JSONObject userDB){
 		try {
-			this.username = user.getString("username");
-			this.password = user.getString("password");
-			this.firstName = user.getString("firstname");
-			this.lastName = user.getString("lastname");
-			this.birthDate = user.getString("birthdate");
-			this.bio = user.getString("bio");
-			this.email = user.getString("email");
-			this.phone = user.getString("phone");
-			this.driver = user.getInt("driver");
-			this.rider = user.getInt("rider");
-			this.rankingDriver = Float.parseFloat(user.getString("rankingd"));
-			this.rankingRider = Float.parseFloat(user.getString("rankingr"));
-			this.photo = user.getString("photo");
-			this.city = user.getString("city");
-			this.smoker = user.getInt("smoker");
+			this.username = userDB.getString("username");
+			this.password = userDB.getString("password");
+			this.firstName = userDB.getString("firstname");
+			this.lastName = userDB.getString("lastname");
+			this.birthDate = userDB.getString("birthdate");
+			this.bio = userDB.getString("bio");
+			this.email = userDB.getString("email");
+			this.phone = userDB.getString("phone");
+			this.driver = userDB.getInt("driver");
+			this.rider = userDB.getInt("rider");
+			this.rankingDriver = Float.parseFloat(userDB.getString("rankingd"));
+			this.rankingRider = Float.parseFloat(userDB.getString("rankingr"));
+			this.photo = userDB.getString("photo");
+			this.city = userDB.getString("city");
+			this.smoker = userDB.getInt("smoker");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
