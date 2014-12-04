@@ -10,21 +10,20 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class SignUpActivity1 extends Activity {
 
+	public final static String signUpActivity1 = "com.BARcode.myCarpooling.signUpActivity1";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +42,12 @@ public class SignUpActivity1 extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	private String username;
+	private String password;
+	private String email;
+	private String phone;
+	
 	public void signUP2(View view){
 	
 		// check if passwords are equal
@@ -54,50 +58,38 @@ public class SignUpActivity1 extends Activity {
 		EditText phoneET = (EditText) findViewById(R.id.phone);
 		
 		
-		String username = usernameET.getText().toString();
-		String password = passwordET.getText().toString();
+		username = usernameET.getText().toString();
+		password = passwordET.getText().toString();
 		String retypedPassword = retypedPasswordET.getText().toString(); 
 		
-		String email = emailET.getText().toString();
-		String phone = phoneET.getText().toString();
+		email = emailET.getText().toString();
+		phone = phoneET.getText().toString();
 	
-		boolean allFieldsCompleted = username.equals("") || password.equals("")
+		boolean notAllFieldsCompleted = username.equals("") || password.equals("")
 				|| retypedPassword.equals("") || email.equals("") 
 				|| phone.equals("");
 		
 		TextView passMatchFailed = (TextView) findViewById(R.id.passMatchFailed);
-
-		if (!password.equals(retypedPassword) || allFieldsCompleted) {
+		TextView notAllFieldsCompletedTV = (TextView) findViewById(R.id.notAllFieldsCompleted);
+		
+		
+		if (!password.equals(retypedPassword)) {
 			passMatchFailed.setVisibility(View.VISIBLE);
-			usernameET.setText("");
+			//usernameET.setText("");
 			passwordET.setText("");
 			retypedPasswordET.setText("");
-			emailET.setText("");
+			//emailET.setText("");
+		} else if (notAllFieldsCompleted) {
+			notAllFieldsCompletedTV.setVisibility(View.VISIBLE);
 		} else {
 			passMatchFailed.setVisibility(View.INVISIBLE);
+			notAllFieldsCompletedTV.setVisibility(View.INVISIBLE);
 			
 			userExists = (TextView) findViewById(R.id.userExists);
 			
 			signUpActivity2Intent = new Intent(this, SignUpActivity2.class);
 			// check if user with username already exists in DB
 			new SignUpActivity().execute(username);
-		}
-	}
-	
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(
-					R.layout.fragment_sign_up_activity1, container, false);
-			return rootView;
 		}
 	}
 	
@@ -123,8 +115,8 @@ public class SignUpActivity1 extends Activity {
 		
 		@Override
 		protected String doInBackground(String... params) {
-			String username = (String) params[0];
-			String link = String.format("http://simurg.site40.net/list_user_username.php?username=%s", username);
+			String username_to_check = (String) params[0];
+			String link = String.format("http://simurg.site40.net/list_user_username.php?username=%s", username_to_check);
 			
 			try {				
 				HttpClient client = new DefaultHttpClient();
@@ -161,6 +153,12 @@ public class SignUpActivity1 extends Activity {
 					     @Override
 					     public void run() {
 					    	 userExists.setVisibility(View.INVISIBLE);
+					    	 
+					    	 // send to SignUpActivity2 username, password, email, phone 
+					    	 String[] params = new String[4];
+					    	 params[0] = username; params[1] = password; params[2] = email; params[3] = phone;
+					    	 signUpActivity2Intent.putExtra(signUpActivity1, params);					    	 
+					    	 
 					    	 startActivity(signUpActivity2Intent);
 					    }
 					});
@@ -171,7 +169,5 @@ public class SignUpActivity1 extends Activity {
 			
 			return null;
 		}
-		
-		
 	}
 }
