@@ -1,11 +1,18 @@
 package com.BARcode.mycarpooling;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import databaseModels.User;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 public class Driver extends Activity {
 
@@ -13,6 +20,22 @@ public class Driver extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_driver);
+		//show available carpools from databse
+		EditText availableCarpool = (EditText)findViewById(R.id.availableCarpool);
+		
+	
+		JSONObject data = null;
+		try {
+			data = new JSONArray(MainActivity.result).getJSONObject(0);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		User user = new User(data);
+		
+		
+		availableCarpool.setText(user.getEmail() + " - ");
+	
 	}
 
 	@Override

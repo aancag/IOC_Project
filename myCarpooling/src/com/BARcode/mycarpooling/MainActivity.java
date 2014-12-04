@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
 	
 	private TextView loginFailed;
 
+	public static String result;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -147,7 +149,8 @@ public class MainActivity extends Activity {
 					    }
 					});
 				} else {
-					loginIntent.putExtra(LOGIN_INFO, result);
+					loginIntent.putExtra(LOGIN_INFO, result);//result=json
+					MainActivity.result = new String(result);
 					startActivity(loginIntent);
 				}
 				
