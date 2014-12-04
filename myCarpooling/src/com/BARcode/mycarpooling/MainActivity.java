@@ -146,7 +146,7 @@ public class MainActivity extends Activity {
 					    	 loginFailed.setVisibility(View.VISIBLE);
 					    }
 					});
-				} else {
+				} else {					
 					loginIntent.putExtra(LOGIN_INFO, result);
 					startActivity(loginIntent);
 				}

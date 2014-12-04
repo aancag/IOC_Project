@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/firstNameHint" >
+        android:hint="@string/firstNameHint"
+        android:inputType="textPersonName" >
     </EditText>
 
     <TextView
@@ -32,8 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName" 
-        android:hint="@string/lastNameHint"/>
+        android:hint="@string/lastNameHint"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView4"
@@ -47,14 +47,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/cityHint" >
+        android:hint="@string/cityHint"
+        android:inputType="textPersonName" >
 
         <requestFocus />
     </EditText>
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/smokerCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/smoker" />
@@ -68,25 +68,37 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <CalendarView
-        android:id="@+id/calendarView1"
+        android:id="@+id/birthDateCalendar"
         android:layout_width="179dp"
         android:layout_height="161dp"
         android:layout_gravity="center" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/bio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textMultiLine" 
-        android:hint="@string/bio"/>
+        android:hint="@string/bio"
+        android:inputType="textMultiLine" />
+
+    <!-- TextView will appear if not all fields are completed -->
+
+    <TextView
+        android:id="@+id/notAllFieldsCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/userExists"
+        android:textColor="#FC4A4A"
+        android:textStyle="italic"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:onClick="signUP3"
+        android:layout_gravity="end"
+        android:onClick="finishRegistration"
         android:text="@string/finishRegistration" />
 
 </LinearLayout>
