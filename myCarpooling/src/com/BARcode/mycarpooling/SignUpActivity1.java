@@ -70,7 +70,7 @@ public class SignUpActivity1 extends Activity {
 				|| phone.equals("");
 		
 		TextView passMatchFailed = (TextView) findViewById(R.id.passMatchFailed);
-		TextView notAllFieldsCompletedTV = (TextView) findViewById(R.id.notAllFieldsCompleted);
+		TextView notAllFieldsCompletedTV = (TextView) findViewById(R.id.notAllFieldsCompletedSUA1);
 		
 		
 		if (!password.equals(retypedPassword)) {

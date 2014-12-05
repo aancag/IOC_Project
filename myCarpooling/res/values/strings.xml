@@ -68,8 +68,16 @@
     <string name="title_activity_driver">Driver</string>
     <string name="title_activity_add_car">AddCar</string>
     <string name="title_activity_add_carpool">AddCarpool</string>
+
     <string name="title_activity_add_carpool2">AddCarpool2</string>
     <string name="userExists">Username already exists in database! Please choose a different username!</string>
     <string name="title_activity_show_history">ShowHistory</string>
 
+  
+    <string name="birthDateHint">Enter birth date in format: YYYY-MM-DD</string>
+    
+    <string name="accountCreatedMessageSuccess">Your account was created successfully!</string>
+	<string name="ok">OK</string>
+    
 </resources>
+
