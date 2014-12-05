@@ -1,4 +1,4 @@
-package utilities;
+package com.BARcode.utilities;
 
 public class Constants {
 	

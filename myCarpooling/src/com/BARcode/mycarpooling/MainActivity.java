@@ -12,7 +12,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import databaseModels.User;
+import com.BARcode.databaseModels.User;
 
 import android.app.ActionBar;
 import android.app.Activity;

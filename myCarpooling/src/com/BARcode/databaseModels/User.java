@@ -1,4 +1,4 @@
-package databaseModels;
+package com.BARcode.databaseModels;
 
 import org.json.JSONException;
 import org.json.JSONObject;

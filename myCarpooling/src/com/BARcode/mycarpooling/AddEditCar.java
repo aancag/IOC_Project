@@ -1,6 +1,6 @@
 package com.BARcode.mycarpooling;
 
-import static utilities.Constants.SERVER_URL;
+import static com.BARcode.utilities.Constants.SERVER_URL;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -16,6 +16,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import com.BARcode.databaseModels.Car;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -28,7 +30,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import databaseModels.Car;
 
 public class AddEditCar extends Activity {
 

@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.BARcode.databaseModels.Carpool;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -22,7 +24,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import databaseModels.Carpool;
 
 public class ShowHistory extends Activity {
 
@@ -45,7 +46,7 @@ public class ShowHistory extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			String username = (String) params[0];
-			String link = String.format(utilities.Constants.SERVER_URL
+			String link = String.format(com.BARcode.utilities.Constants.SERVER_URL
 					+ "/get_carpools.php?username=%s", username);
 
 			try {

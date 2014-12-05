@@ -1,6 +1,6 @@
 package com.BARcode.mycarpooling;
 
-import static utilities.Constants.SERVER_URL;
+import static com.BARcode.utilities.Constants.SERVER_URL;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

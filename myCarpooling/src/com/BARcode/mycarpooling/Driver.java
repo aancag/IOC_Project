@@ -4,7 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import databaseModels.User;
+import com.BARcode.databaseModels.User;
 
 import android.app.Activity;
 import android.content.Intent;

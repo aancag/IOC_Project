@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import static utilities.Utilities.fieldsValid;
-import static utilities.Constants.ADD_CARPOOL;
+import static com.BARcode.utilities.Constants.ADD_CARPOOL;
+import static com.BARcode.utilities.Utilities.fieldsValid;
 
 public class AddCarpool extends Activity {
 

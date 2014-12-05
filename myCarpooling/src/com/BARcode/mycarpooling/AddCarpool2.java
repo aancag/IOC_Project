@@ -1,8 +1,8 @@
 package com.BARcode.mycarpooling;
 
-import static utilities.Utilities.fieldsValid;
-import static utilities.Constants.ADD_CARPOOL;
-import static utilities.Constants.SERVER_URL;
+import static com.BARcode.utilities.Constants.ADD_CARPOOL;
+import static com.BARcode.utilities.Constants.SERVER_URL;
+import static com.BARcode.utilities.Utilities.fieldsValid;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
