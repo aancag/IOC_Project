@@ -12,6 +12,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import databaseModels.User;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -36,6 +38,8 @@ public class MainActivity extends Activity {
 	private TextView loginFailed;
 
 	public static String result;
+	public static JSONObject userJsonLoggedIn;
+	public static User userLoggedIn;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +155,9 @@ public class MainActivity extends Activity {
 				} else {
 					loginIntent.putExtra(LOGIN_INFO, result);//result=json
 					MainActivity.result = new String(result);
+					//TODO - create user object
+					MainActivity.userJsonLoggedIn = new JSONArray(MainActivity.result).getJSONObject(0); 
+					MainActivity.userLoggedIn = new User(userJsonLoggedIn);
 					startActivity(loginIntent);
 				}
 				

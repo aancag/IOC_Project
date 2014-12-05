@@ -20,7 +20,7 @@ public class Carpool {
 		try {
 			this.username = carpoolDB.getString("username");
 			this.source = carpoolDB.getString("source");
-			this.destination = carpoolDB.getString("destionation");
+			this.destination = carpoolDB.getString("destination");
 			this.date = carpoolDB.getString("date");
 			this.time = carpoolDB.getString("time");
 			this.availableSeats = carpoolDB.getInt("avseats");

@@ -33,8 +33,7 @@ public class Driver extends Activity {
 		}
 		User user = new User(data);
 		
-		
-		availableCarpool.setText("");
+		availableCarpool.setText(user.getEmail());
 	
 	}
 
@@ -53,7 +52,10 @@ public class Driver extends Activity {
 		Intent intent = new Intent(this, AddCarpool.class);
     	startActivity(intent);
 	}
-	
+	public void showHistory(View view){
+		Intent intent = new Intent(this, ShowHistory.class);
+    	startActivity(intent);
+	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
