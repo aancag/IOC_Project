@@ -45,7 +45,7 @@ public class Driver extends Activity {
 	}
 
 	public void addCar(View view){
-		Intent intent = new Intent(this, AddCar.class);
+		Intent intent = new Intent(this, AddEditCar.class);
     	startActivity(intent);
 	}
 	public void addCarpool(View view){

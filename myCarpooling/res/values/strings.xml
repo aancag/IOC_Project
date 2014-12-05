@@ -46,11 +46,11 @@
     <string name="history">Show history</string>
     <string name="addCarpool">Add new Carpool</string>
     <string name="addEditCar">Add/Edit Car</string>
-    <string name="nrInmatriculare">Numar inmatriculare</string>
+    <string name="carnumber">License plate</string>
     <string name="brand">Brand</string>
     <string name="color">Color</string>
     <string name="seatsNo">Seats number</string>
-    <string name="anAchizitie">An achizitie</string>
+    <string name="year">Acquisition year</string>
     <string name="addCarButton">Add car</string>
     <string name="source">Source</string>
     <string name="destination">Destination</string>
@@ -72,8 +72,9 @@
     <string name="title_activity_show_history">ShowHistory</string>
     <string name="birthDateHint">Enter date in format: YYYY-MM-DD</string>
     <string name="accountCreatedMessageSuccess">Your account was created successfully!</string>
-	<string name="ok">OK</string>
-	<string name="notAllFieldsCompleted">Not all fields completed!</string>
-    
-</resources>
+    <string name="ok">OK</string>
+    <string name="notAllFieldsCompleted">Not all fields completed!</string>
+    <string name="title_activity_add_edit_car">AddEditCar</string>
+    <string name="hello_world">Hello world!</string>
 
+</resources>
