@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/userExists"
+        android:text="@string/notAllFieldsCompleted"
         android:textColor="#FC4A4A"
         android:textStyle="italic"
         android:visibility="invisible" />
@@ -118,15 +118,6 @@
         android:textStyle="italic"
         android:visibility="invisible" />
 
-    <TextView
-        android:id="@+id/notAllFieldsCompletedSUA1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/userExists"
-        android:textColor="#FC4A4A"
-        android:textStyle="italic"
-        android:visibility="invisible" />
 
     <Button
         android:id="@+id/button1"

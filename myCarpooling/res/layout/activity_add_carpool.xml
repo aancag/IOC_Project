@@ -34,7 +34,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/addDestionation"
+        android:id="@+id/addDestination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />
@@ -51,7 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="date" />
+        android:inputType="date"
+        android:hint="@string/birthDateHint" />
 
     <TextView
         android:id="@+id/textView4"
@@ -61,7 +62,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/carpoolTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -75,7 +76,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/carpoolPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -89,18 +90,30 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/carpoolDuration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="time" />
 
+    <!-- TextView will appear if not all fields are completed -->
+
+    <TextView
+        android:id="@+id/notAllFieldsCompletedAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/notAllFieldsCompleted"
+        android:textColor="#FC4A4A"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/next" 
-        android:onClick="nextOptions"/>
+        android:layout_gravity="end"
+        android:onClick="nextOptions"
+        android:text="@string/next" />
 
 </LinearLayout>

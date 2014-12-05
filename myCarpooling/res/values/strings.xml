@@ -18,7 +18,6 @@
     <string name="birthDate">Birth Date</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_display_message">Log in!</string>
-    <string name="hello_world">castraveti!</string>
     <string name="bio">Bio (Optional)</string>
     <string name="lookingTo">Looking to</string>
     <string name="city">City</string>
@@ -68,16 +67,13 @@
     <string name="title_activity_driver">Driver</string>
     <string name="title_activity_add_car">AddCar</string>
     <string name="title_activity_add_carpool">AddCarpool</string>
-
     <string name="title_activity_add_carpool2">AddCarpool2</string>
     <string name="userExists">Username already exists in database! Please choose a different username!</string>
     <string name="title_activity_show_history">ShowHistory</string>
-
-  
-    <string name="birthDateHint">Enter birth date in format: YYYY-MM-DD</string>
-    
+    <string name="birthDateHint">Enter date in format: YYYY-MM-DD</string>
     <string name="accountCreatedMessageSuccess">Your account was created successfully!</string>
 	<string name="ok">OK</string>
+	<string name="notAllFieldsCompleted">Not all fields completed!</string>
     
 </resources>
 

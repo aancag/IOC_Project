@@ -167,25 +167,5 @@ public class MainActivity extends Activity {
 
 			return null;
 		}
-		
-		@Override
-		protected void onPostExecute(String v) {
-			try {
-				JSONArray Jarray = new JSONArray(result);
-				for (int i = 0; i < Jarray.length(); i++) {
-					JSONObject Jasonobject = null;
-					Jasonobject = Jarray.getJSONObject(i);
-
-					// get an output on the screen
-					String name = Jasonobject.getString("username");
-					Log.v("from_db", name);
-				}
-				
-				progressMessage.dismiss();
-			} catch (Exception e) {
-				// TODO: handle exception
-				Log.e("log_tag", "Error parsing data " + e.toString());
-			}
-		}
 	}
 }

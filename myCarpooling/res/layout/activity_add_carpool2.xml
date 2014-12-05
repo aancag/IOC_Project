@@ -18,7 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/seatsNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -34,11 +34,29 @@
         android:text="@string/commutePeriod"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <RadioButton
-        android:id="@+id/radioButton1"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RadioButton" />
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/once"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="only once" />
+
+        <RadioButton
+            android:id="@+id/daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="daily" />
+
+        <RadioButton
+            android:id="@+id/weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="weekly" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/textView3"
@@ -46,5 +64,25 @@
         android:layout_height="wrap_content"
         android:text="@string/itinerary"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <!-- TextView will appear if not all fields are completed -->
+
+    <TextView
+        android:id="@+id/notAllFieldsCompletedAC2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/notAllFieldsCompleted"
+        android:textColor="#FC4A4A"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/finishAddCarpool"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:onClick="finishAddCarpool"
+        android:text="@string/finishRegistration" />
 
 </LinearLayout>
