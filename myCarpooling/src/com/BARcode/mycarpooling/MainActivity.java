@@ -157,40 +157,6 @@ public class MainActivity extends Activity {
 			} catch (Exception e) {
 				Log.e("ERROR:", e.getMessage());
 			}
-						
-//			List<NameValuePair> urlParams = new ArrayList<NameValuePair>();
-//			urlParams.add(new BasicNameValuePair("username", username));
-//			urlParams.add(new BasicNameValuePair("password", password));
-//
-//			HttpClient httpClient = new DefaultHttpClient();
-//			HttpPost httpPost = new HttpPost(url);
-//
-//			try {
-//				httpPost.setEntity(new UrlEncodedFormEntity(urlParams));
-//
-//				HttpResponse httpResponse = httpClient.execute(httpPost);
-//				HttpEntity httpEntity = httpResponse.getEntity();
-//
-//				is = httpEntity.getContent();
-//			} catch (Exception e) {
-//				// something bad happened
-//			}
-//
-//			try {
-//				BufferedReader br = new BufferedReader(
-//						new InputStreamReader(is));
-//				StringBuilder sb = new StringBuilder();
-//				String line = "";
-//
-//				while ((line = br.readLine()) != null) {
-//					sb.append(line + "\n");
-//				}
-//
-//				is.close();
-//				result = sb.toString();
-//			} catch (Exception e) {
-//				// bad
-//			}
 
 			return null;
 		}

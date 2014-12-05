@@ -9,7 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/firstName"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium" >
+
+        <requestFocus />
+    </TextView>
 
     <EditText
         android:id="@+id/firstName"
@@ -49,8 +52,6 @@
         android:ems="10"
         android:hint="@string/cityHint"
         android:inputType="textPersonName" >
-
-        <requestFocus />
     </EditText>
 
     <CheckBox
@@ -67,11 +68,13 @@
         android:text="@string/birthDate"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <CalendarView
-        android:id="@+id/birthDateCalendar"
-        android:layout_width="179dp"
-        android:layout_height="161dp"
-        android:layout_gravity="center" />
+    <EditText
+        android:id="@+id/birthDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" 
+        android:hint="@string/birthDateHint"/>
 
     <EditText
         android:id="@+id/bio"
