@@ -16,32 +16,39 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.BARcode.databaseModels.Car;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.Space;
+import android.widget.TextView;
+
+import com.BARcode.databaseModels.Car;
 
 public class AddEditCar extends Activity {
 
 	private String username;
+
+	private LinearLayout lm;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_edit_car);
 
+		lm = (LinearLayout) findViewById(R.id.addEditCar);
+
 		username = MainActivity.userLoggedIn.getUsername();
 		new AddEditCarConnectDB().execute(username);
+
 	}
 
 	@Override
@@ -67,7 +74,7 @@ public class AddEditCar extends Activity {
 		Intent addCarIntent = new Intent(this, AddCar.class);
 		startActivity(addCarIntent);
 	}
-	
+
 	private ProgressDialog progressMessage;
 
 	class AddEditCarConnectDB extends AsyncTask<String, String, String> {
@@ -129,25 +136,115 @@ public class AddEditCar extends Activity {
 							} catch (JSONException e) {
 								e.printStackTrace();
 							}
+
+							final float scale = getResources().getDisplayMetrics().density;
+							int padding_5dp = (int) (5 * scale + 0.5f);
+							int padding_10dp = (int) (10 * scale + 0.5f);
+							int padding_20dp = (int) (20 * scale + 0.5f);
+							
+							for (int i = 0; i < carsList.size(); i++) {
+								Car car = carsList.get(i);
+								
+								LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+								layoutParams.setMargins(0, 0, 5, 10);
+							
+								Space space = new Space(AddEditCar.this);
+								space.setLayoutParams(layoutParams);
+								space.setPaddingRelative(padding_20dp,padding_10dp,padding_10dp,padding_10dp);
+								
+								// Create LinearLayout VERTICAL
+								LinearLayout llv = new LinearLayout(AddEditCar.this);
+								llv.setOrientation(LinearLayout.VERTICAL);
+								llv.setPadding(padding_20dp,padding_5dp,padding_5dp,padding_5dp);
+								
+								// Create licensePlate
+								TextView licensePlate = new TextView(
+										AddEditCar.this);
+								licensePlate.setText("License Plate: "
+										+ car.getCarNumber());
+								licensePlate.setTextAppearance(AddEditCar.this, android.R.style.TextAppearance_Medium);
+																
+								llv.addView(licensePlate);
+								
+								// Create LinearLayout HORIZONTAL
+								LinearLayout ll1 = new LinearLayout(
+										AddEditCar.this);
+								ll1.setOrientation(LinearLayout.HORIZONTAL);
+								ll1.setLayoutParams(layoutParams);
+								ll1.setPadding(padding_20dp,padding_5dp,padding_5dp,padding_5dp);
+															
+								// Create brand
+								TextView brandTV = new TextView(AddEditCar.this);
+								brandTV.setText("Brand: ");
+								brandTV.setTypeface(null, Typeface.BOLD);
+								
+								TextView brand = new TextView(AddEditCar.this);
+								brand.setText(car.getBrand());
+								
+								ll1.addView(brandTV);
+								ll1.addView(brand);
+								ll1.addView(space);
+								
+								// Create color
+								TextView colourTV = new TextView(AddEditCar.this);
+								colourTV.setText("Color: ");
+								colourTV.setTypeface(null, Typeface.BOLD);
+								
+								TextView colour = new TextView(AddEditCar.this);
+								colour.setText(car.getColour());
+								
+								space = new Space(AddEditCar.this);
+								space.setLayoutParams(layoutParams);
+								space.setPaddingRelative(padding_20dp,padding_10dp,padding_10dp,padding_10dp);
+								
+								ll1.addView(colourTV);
+								ll1.addView(colour);
+								ll1.addView(space);
+								
+								// Create LinearLayout HORIZONTAL
+								LinearLayout ll2 = new LinearLayout(
+										AddEditCar.this);
+								ll2.setOrientation(LinearLayout.HORIZONTAL);
+								ll2.setLayoutParams(layoutParams);
+								ll2.setPadding(padding_20dp,padding_5dp,padding_5dp,padding_5dp);
+								
+								// Create seatsnumber
+								TextView seatsNoTV = new TextView(AddEditCar.this);
+								seatsNoTV.setText("Seats number: ");
+								seatsNoTV.setTypeface(null, Typeface.BOLD);
+								
+								TextView seatsNo = new TextView(AddEditCar.this);
+								seatsNo.setText(String.valueOf(car.getSeats()));
+								
+								space = new Space(AddEditCar.this);
+								space.setLayoutParams(layoutParams);
+								space.setPaddingRelative(padding_20dp,padding_10dp,padding_10dp,padding_10dp);
+								
+								ll2.addView(seatsNoTV);
+								ll2.addView(seatsNo);
+								ll2.addView(space);
+								
+								// Create acquisition year
+								TextView yearTV = new TextView(AddEditCar.this);
+								yearTV.setText("Year: ");
+								yearTV.setTypeface(null, Typeface.BOLD);
+								
+								TextView year = new TextView(AddEditCar.this);
+								year.setText(String.valueOf(car.getYear()));
+								
+								ll2.addView(yearTV);
+								ll2.addView(year);
+
+								llv.addView(ll1);
+								llv.addView(ll2);
+								
+								lm.addView(llv);
+
+							}
 						}
 
 						progressMessage.dismiss();
-//						
-//						// add button for adding new car
-//						Button addNewCar = new Button(AddEditCar.this);
-//						addNewCar.setText("Add new car");
-//						addNewCar.setOnClickListener(new OnClickListener() {
-//							@Override
-//							public void onClick(View arg0) {
-//								Intent addCarIntent = new Intent(
-//										AddEditCar.this, AddCar.class);
-//								startActivity(addCarIntent);
-//							}
-//						});
-//						
-//						LinearLayout layout = (LinearLayout) findViewById(R.id.add_edit_car_layout);
-//						layout.addView(addNewCar);
-						
+
 					}
 				});
 

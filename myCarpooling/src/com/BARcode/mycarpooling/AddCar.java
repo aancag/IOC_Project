@@ -1,5 +1,8 @@
 package com.BARcode.mycarpooling;
 
+import static com.BARcode.utilities.Constants.SERVER_URL;
+import static com.BARcode.utilities.Utilities.fieldsValid;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,11 +21,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
-import static com.BARcode.utilities.Constants.SERVER_URL;
-import static com.BARcode.utilities.Utilities.fieldsValid;
-import android.opengl.ETC1;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -113,7 +113,7 @@ public class AddCar extends Activity {
 
 			try {
 				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(
-						10);
+						6);
 				nameValuePairs.add(new BasicNameValuePair("username",
 						MainActivity.userLoggedIn.getUsername()));
 				nameValuePairs.add(new BasicNameValuePair("carnumber",
