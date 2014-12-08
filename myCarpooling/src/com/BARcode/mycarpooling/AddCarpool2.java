@@ -140,11 +140,11 @@ public class AddCarpool2 extends Activity {
 				nameValuePairs.add(new BasicNameValuePair("price",
 						(String) params[4]));
 				nameValuePairs.add(new BasicNameValuePair("duration",
-						(String) params[4]));
-				nameValuePairs.add(new BasicNameValuePair("avseats",
 						(String) params[5]));
-				nameValuePairs.add(new BasicNameValuePair("commper",
+				nameValuePairs.add(new BasicNameValuePair("avseats",
 						(String) params[6]));
+				nameValuePairs.add(new BasicNameValuePair("commper",
+						(String) params[7]));
 
 				HttpPost httpPost = new HttpPost(url);
 				httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
