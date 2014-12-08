@@ -54,6 +54,8 @@ public class AddEditCar extends Activity {
 	private List<Button> editButtons;
 	private List<Car> carsList = new ArrayList<Car>();
 	private Map<Integer, String> buttonCar = new HashMap<Integer, String>();
+	
+	public static Car car = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +159,8 @@ public class AddEditCar extends Activity {
 		InputStream is = null;
 		String cars = "";
 
-		View.OnClickListener myhandler = new View.OnClickListener() {
+		// delete car from DB
+		View.OnClickListener deleteCarHandler = new View.OnClickListener() {
 			public void onClick(View v) {
 				// find clicked button
 				int id = v.getId();
@@ -181,6 +184,32 @@ public class AddEditCar extends Activity {
 			}
 		};
 
+		// edit car from DB
+		View.OnClickListener editCarHandler = new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// find clicked button
+				int id = v.getId();
+				// find car to edit
+				final String licensePlate = buttonCar.get(id);
+			
+				// find car object
+				for (Car car : carsList) {
+					if (car.getCarNumber().equals(licensePlate)) {
+						AddEditCar.car = car;
+						break;
+					}
+				}
+				
+				Intent intent = new Intent(AddEditCar.this, AddCar.class);
+				intent.putExtra("car", true);
+				
+				startActivity(intent);
+				
+			}
+		};
+		
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -337,8 +366,7 @@ public class AddEditCar extends Activity {
 								Button editButton = new Button(AddEditCar.this);
 								editButton.setText("Edit Car");
 								editButton.setId(i);
-								// TODO: add handler for edit
-								// editButton.setOnClickListener();
+								editButton.setOnClickListener(editCarHandler);
 								buttonCar.put(i, car.getCarNumber());
 								// editButtons.add(editButton);
 
@@ -347,9 +375,9 @@ public class AddEditCar extends Activity {
 								// add button delete car
 								Button deleteButton = new Button(AddEditCar.this);
 								deleteButton.setText("Delete this car");
-								deleteButton.setId(i * 99999);
-								deleteButton.setOnClickListener(myhandler);
-								buttonCar.put(i * 99999, car.getCarNumber());
+								deleteButton.setId((i + 1) * 99999);
+								deleteButton.setOnClickListener(deleteCarHandler);
+								buttonCar.put((i + 1) * 99999, car.getCarNumber());
 								// deleteButtons.add(deleteButton);
 
 								// deleteButton.setOnClickListener(new

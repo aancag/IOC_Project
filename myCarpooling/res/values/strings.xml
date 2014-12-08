@@ -52,6 +52,7 @@
     <string name="seatsNo">Seats number</string>
     <string name="year">Acquisition year</string>
     <string name="addCarButton">Add car</string>
+    <string name="addEditCarButton">Add/Edit car</string>
     <string name="source">Source</string>
     <string name="destination">Destination</string>
     <string name="date">Date</string>
