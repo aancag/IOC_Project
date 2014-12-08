@@ -86,7 +86,8 @@
         </activity>
         <activity
             android:name=".ShowHistory"
-            android:label="@string/title_activity_show_history" >
+            android:label="@string/title_activity_show_history" 
+            android:parentActivityName=".Driver">
         </activity>
         <activity
             android:name=".AddEditCar"
@@ -98,7 +99,8 @@
         </activity>
         <activity
             android:name=".SearchResults"
-            android:label="@string/title_activity_search_results" >
+            android:label="@string/title_activity_search_results"
+            android:parentActivityName=".Passenger" >
         </activity>
     </application>
 

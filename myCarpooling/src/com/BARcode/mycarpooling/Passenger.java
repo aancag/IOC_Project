@@ -22,8 +22,8 @@ public class Passenger extends Activity {
 		EditText destination = (EditText) findViewById(R.id.destinationPassenger);
 		
 		Intent intent = new Intent(this, SearchResults.class);
-		intent.putExtra("source", source.getText());
-		intent.putExtra("destination", destination.getText());
+		intent.putExtra("source", source.getText().toString());
+		intent.putExtra("destination", destination.getText().toString());
 		
 		startActivity(intent);
 	}
