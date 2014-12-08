@@ -11,19 +11,6 @@
     tools:context="com.BARcode.mycarpooling.Passenger" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ranking"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <RatingBar
-        android:id="@+id/ratingBar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/sourcePassenger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
@@ -47,7 +34,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/destinationPassenger"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />
@@ -57,7 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="@string/search" />
+        android:text="@string/search"
+        android:onClick="searchResults" />
 
     <Button
         android:id="@+id/button2"

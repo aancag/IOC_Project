@@ -76,5 +76,6 @@
     <string name="notAllFieldsCompleted">Not all fields completed!</string>
     <string name="title_activity_add_edit_car">AddEditCar</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_search_results">SearchResults</string>
 
 </resources>

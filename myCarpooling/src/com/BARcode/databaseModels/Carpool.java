@@ -1,5 +1,7 @@
 package com.BARcode.databaseModels;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,10 +31,24 @@ public class Carpool {
 			this.itinerary = carpoolDB.getString("itinerary");
 			this.commutePeriod = carpoolDB.getInt("commper");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<String> getInfo(){
+		ArrayList<String> info = new ArrayList<String>();
+		info.add("Username: " + this.username);
+		info.add("Source: " + this.source);
+		info.add("Destination: " + this.destination);
+		info.add("Date: " + this.date);
+		info.add("Time: " + this.time);
+		info.add("Available Seats: " + this.availableSeats);
+		info.add("Price: " + this.price + " RON");
+		info.add("Duration: " + this.duration + " H");
+		info.add("Itinerary: " + this.itinerary);
+		info.add("Commute Period: " + this.commutePeriod);
 		
+		return info;
 	}
 	
 	public String getUsername() {
