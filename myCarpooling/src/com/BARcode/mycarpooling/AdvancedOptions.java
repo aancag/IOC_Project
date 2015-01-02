@@ -48,6 +48,7 @@ public class AdvancedOptions extends Activity {
 			
 			@Override
 			public void onMapClick(LatLng coord) {
+				
 				count++;
 				if(count == 1){
 					sourceMarker = true;
