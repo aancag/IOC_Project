@@ -78,5 +78,6 @@
     <string name="title_activity_add_edit_car">AddEditCar</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_search_results">SearchResults</string>
+    <string name="title_activity_advanced_options">AdvancedOptions</string>
 
 </resources>

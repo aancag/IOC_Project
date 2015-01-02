@@ -67,7 +67,7 @@ public class SignUpActivity1 extends Activity {
 	
 		boolean notAllFieldsCompleted = username.equals("") || password.equals("")
 				|| retypedPassword.equals("") || email.equals("") 
-				|| phone.equals("");
+				|| phone.equals("")||(phone.length() != 10);
 		
 		TextView passMatchFailed = (TextView) findViewById(R.id.passMatchFailed);
 		TextView notAllFieldsCompletedTV = (TextView) findViewById(R.id.notAllFieldsCompletedSUA1);
@@ -75,10 +75,8 @@ public class SignUpActivity1 extends Activity {
 		
 		if (!password.equals(retypedPassword)) {
 			passMatchFailed.setVisibility(View.VISIBLE);
-			//usernameET.setText("");
 			passwordET.setText("");
 			retypedPasswordET.setText("");
-			//emailET.setText("");
 		} else if (notAllFieldsCompleted) {
 			notAllFieldsCompletedTV.setVisibility(View.VISIBLE);
 		} else {

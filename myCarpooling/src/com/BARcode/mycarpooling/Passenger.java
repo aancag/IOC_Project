@@ -18,16 +18,22 @@ public class Passenger extends Activity {
 
 	//butonul de Search te redirecteaza spre pagina de SearchResults
 	public void searchResults(View view){
-		EditText source = (EditText) findViewById(R.id.sourcePassenger);
+	/*	EditText source = (EditText) findViewById(R.id.sourcePassenger);
 		EditText destination = (EditText) findViewById(R.id.destinationPassenger);
 		
 		Intent intent = new Intent(this, SearchResults.class);
 		intent.putExtra("source", source.getText().toString());
 		intent.putExtra("destination", destination.getText().toString());
 		
+		startActivity(intent);*/
+		Intent intent = new Intent(this, AdvancedOptions.class);
 		startActivity(intent);
+		
 	}
-	
+	public void advancedOptions(View view){
+		//Intent intent = new Intent(this, AdvancedOptions.class);
+		//startActivity(intent);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
