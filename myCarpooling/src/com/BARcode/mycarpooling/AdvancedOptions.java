@@ -78,6 +78,10 @@ public class AdvancedOptions extends Activity  implements RoutingListener{
 			}
 		}); 
 	}
+	/*
+	 * Intoarce numele orasului in functie de coordonate
+	 * Daca nu te afli intr-un oras, intoarce numele tarii
+	 */
 	private String getAddress(double latitude, double longitude) {
         StringBuilder result = new StringBuilder();
         try {
