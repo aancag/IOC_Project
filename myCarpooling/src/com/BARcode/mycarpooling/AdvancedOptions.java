@@ -1,73 +1,100 @@
 package com.BARcode.mycarpooling;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import android.app.Activity;
-import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.BARcode.googleMaps.MapActivity;
+import com.BARcode.googleMaps.Route;
+import com.BARcode.googleMaps.Routing;
+import com.BARcode.googleMaps.RoutingListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
-public class AdvancedOptions extends Activity {
+public class AdvancedOptions extends Activity  implements RoutingListener{
 
 	private GoogleMap map;
 	private int count = 0;
-	private boolean sourceMarker = false;
-	private boolean destinationMarker = false;
+	private LatLng srcCoord;
+	private LatLng dstCoord;
+	private  Routing routing;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_advanced_options);
 		
-		
-		/*mapActivity = new MapActivity();
-		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-		fragmentTransaction.add(R.id.map, mapActivity);
-		fragmentTransaction.commit();*/
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 		        .getMap();
-		CameraUpdate romanica =
-			        CameraUpdateFactory.newLatLng(new LatLng(44.51,24.9));
-		CameraUpdate zoom = CameraUpdateFactory.zoomTo((float) 5.6);
 		
-		map.moveCamera(romanica);
-		map.animateCamera(zoom);
-		
-	
-	
-		map.setOnMapClickListener(new OnMapClickListener() {
+        CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(44.51,24.9));
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo((float) 5.6);
+
+        map.moveCamera(center);
+        map.animateCamera(zoom);
+        routing = new Routing(Routing.TravelMode.DRIVING);
+        routing.registerListener(this);
+        
+        map.setOnMapClickListener(new OnMapClickListener() {
 			
 			@Override
 			public void onMapClick(LatLng coord) {
-				
 				count++;
 				if(count == 1){
-					sourceMarker = true;
 					map.addMarker(new MarkerOptions()
 							.position(coord)
 							.draggable(true)
 							.title("Source"));
+					srcCoord = coord;
 				}
 				if(count == 2){
-					destinationMarker = true;
 					map.addMarker(new MarkerOptions()
 							.position(coord)
 							.draggable(true)
 							.title("Destination"));
-				}	
+					dstCoord = coord;
+					routing.execute(srcCoord, dstCoord);
+					
+					System.out.println("uiteeeSRC: " + getAddress(srcCoord.latitude, srcCoord.longitude));
+					System.out.println("uiteeeDST: " + getAddress(dstCoord.latitude, dstCoord.longitude));
+				}
+				
+				
 			}
-		});
+		}); 
 	}
+	private String getAddress(double latitude, double longitude) {
+        StringBuilder result = new StringBuilder();
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses.size() > 0) {
+                Address address = addresses.get(0);
+                result.append(address.getLocality()).append("\n");
+                result.append(address.getCountryName());
+            }
+        } catch (IOException e) {
+            Log.e("tag--mai si pierzi", e.getMessage());
+        }
 
+        return result.toString();
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -85,5 +112,38 @@ public class AdvancedOptions extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onRoutingFailure() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRoutingStart() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onRoutingSuccess(PolylineOptions mPolyOptions, Route route) {
+		 PolylineOptions polyoptions = new PolylineOptions();
+	      polyoptions.color(Color.BLUE);
+	      polyoptions.width(10);
+	      polyoptions.addAll(mPolyOptions.getPoints());
+	      map.addPolyline(polyoptions);
+
+	      // Start marker
+	      MarkerOptions options = new MarkerOptions();
+	      options.position(srcCoord);
+	      //options.icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue));
+	      map.addMarker(options);
+
+	      // End marker
+	      options = new MarkerOptions();
+	      options.position(dstCoord);
+	      //options.icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green));  
+	      map.addMarker(options);
 	}
 }
