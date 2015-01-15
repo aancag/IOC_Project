@@ -49,7 +49,6 @@ public class MainActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
 
-        
         setContentView(R.layout.activity_main);
         
     }

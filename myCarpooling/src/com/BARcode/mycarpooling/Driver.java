@@ -4,8 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.BARcode.databaseModels.User;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,17 +11,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RatingBar;
+
+import com.BARcode.databaseModels.User;
 
 public class Driver extends Activity {
 
+	private RatingBar ratingBar;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_driver);
-		//show available carpools from databse
 		EditText availableCarpool = (EditText)findViewById(R.id.availableCarpool);
 		
-	
 		JSONObject data = null;
 		try {
 			data = new JSONArray(MainActivity.result).getJSONObject(0);
@@ -32,6 +33,11 @@ public class Driver extends Activity {
 			e.printStackTrace();
 		}
 		User user = new User(data);
+		
+		ratingBar = (RatingBar) findViewById(R.id.ratingBar1);
+		ratingBar.setRating(user.getRankingDriver());
+		ratingBar.setIsIndicator(true);
+	
 		
 		availableCarpool.setText(user.getEmail());
 	
