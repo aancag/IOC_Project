@@ -123,6 +123,12 @@
         </activity>
         
         <activity
+            android:name=".ShowDriverInformation"
+            android:label="@string/title_activity_driver_information"
+            android:parentActivityName=".SearchCarpools" >
+        </activity>
+        
+        <activity
             android:name=".AdvancedOptions"
             android:label="@string/title_activity_advanced_options" >
         </activity>

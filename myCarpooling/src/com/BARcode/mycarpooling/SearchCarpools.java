@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -22,6 +21,7 @@ import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,6 +42,8 @@ public class SearchCarpools extends Activity {
 	private Map<Integer, Integer> joinButtons = new HashMap<Integer, Integer>();
 	private List<Carpool> carpoolsList = new ArrayList<Carpool>();
 
+	public static String SHOW_DRIVER_INFO = "SearchCarpools.username";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,8 +66,11 @@ public class SearchCarpools extends Activity {
 			@Override
 			public void onClick(View v) {
 				// find clicked button
-				int id = v.getId();
+				Carpool carpool = carpoolsList.get(v.getId());
 				
+				Intent intent = new Intent(SearchCarpools.this, ShowDriverInformation.class);
+				intent.putExtra(SHOW_DRIVER_INFO, carpool.getUsername());
+				startActivity(intent);
 			}
 		};
 		
@@ -86,7 +91,16 @@ public class SearchCarpools extends Activity {
 			progressMessage.setMessage("Loading ...");
 			progressMessage.setIndeterminate(false);
 			progressMessage.setCancelable(false);
+			if ( progressMessage!=null && progressMessage.isShowing() ){
+				progressMessage.cancel();
+		    }
 			progressMessage.show();
+		}
+				
+		@Override
+		protected void onPostExecute(String file_url) {
+		     // dismiss the dialog once done
+			progressMessage.dismiss();
 		}
 
 		@Override
@@ -114,7 +128,7 @@ public class SearchCarpools extends Activity {
 					carpools += lines[i] + "\n";
 				}
 
-				runOnUiThread(new Runnable() {
+				runOnUiThread(new Runnable() { 
 					@Override
 					public void run() {
 						if (!carpools.equals("null\n")) {
@@ -333,7 +347,7 @@ public class SearchCarpools extends Activity {
 								lm.addView(joinCarpoolButton);
 							}
 
-							progressMessage.dismiss();
+							//progressMessage.dismiss();
 						}
 					}
 				});

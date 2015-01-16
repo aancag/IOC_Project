@@ -80,5 +80,6 @@
     <string name="title_activity_search_results">SearchResults</string>
     <string name="title_activity_search_carpools">Search Carpools</string>
     <string name="title_activity_advanced_options">AdvancedOptions</string>
+    <string name="title_activity_driver_information">Driver Information</string>
 
 </resources>
