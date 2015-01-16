@@ -13,10 +13,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -28,12 +31,24 @@ public class ShowDriverInformation extends Activity {
 
 	private User driver;
 
+	private String source;
+	
+	private String destination;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_driver_information);
 
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		
 		String driver = getIntent().getExtras().getString(SearchCarpools.SHOW_DRIVER_INFO);
+		
+		source = getIntent().getExtras().getString(SearchCarpools.CARPOOL_SOURCE);
+		
+		destination = getIntent().getExtras().getString(SearchCarpools.CARPOOL_DEST);
+		
 		new GetUserInfoFromDB().execute(driver);
 	}
 
@@ -43,11 +58,28 @@ public class ShowDriverInformation extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
+		
+		// TODO: should first find parent class -> not working
+		onBackPressed();
+		
 		if (id == R.id.action_settings) {
+						
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		
+		Intent intent = new Intent(ShowDriverInformation.this, SearchCarpools.class);
+		intent.putExtra("source", source);
+		intent.putExtra("destination", destination);
+		startActivity(intent);
+	}
+	
+	
 
 	/*************** DB ***************/
 	class GetUserInfoFromDB extends AsyncTask<String, String, String> {
@@ -66,12 +98,12 @@ public class ShowDriverInformation extends Activity {
 
 		@Override
 		protected void onPostExecute(String s) {
-		     // dismiss the dialog once done
+			// dismiss the dialog once done
 			progressMessage.dismiss();
 		}
-		
+
 		String result = "";
-		
+
 		@Override
 		protected String doInBackground(String... params) {
 			String url = SERVER_URL + "list_user_username.php?username=" + params[0];
@@ -101,28 +133,37 @@ public class ShowDriverInformation extends Activity {
 					public void run() {
 						try {
 							driver = new User(new JSONArray(result).getJSONObject(0));
-							
+
 							// populate GUI
 							((EditText) findViewById(R.id.dName)).setText(driver.getFirstName() + " " + driver.getLastName());
+							((EditText) findViewById(R.id.dName)).setKeyListener(null);
+							
 							((EditText) findViewById(R.id.dMail)).setText(driver.getEmail());
+							((EditText) findViewById(R.id.dMail)).setKeyListener(null);
+							
 							((EditText) findViewById(R.id.dPhone)).setText(driver.getPhone());
-							((EditText) findViewById(R.id.dMail)).setText(driver.getEmail());
+							((EditText) findViewById(R.id.dPhone)).setKeyListener(null);
+														
 							((RatingBar) findViewById(R.id.dRating)).setRating(driver.getRankingDriver());
+							
 							((EditText) findViewById(R.id.dBio)).setText(driver.getBio());
-							((EditText) findViewById(R.id.dMail)).setText(driver.getEmail());
+							((EditText) findViewById(R.id.dBio)).setKeyListener(null);
+							
 							((EditText) findViewById(R.id.dBirthDate)).setText(driver.getBirthDate());
-							((EditText) findViewById(R.id.dMail)).setText(driver.getEmail());
+							((EditText) findViewById(R.id.dBirthDate)).setKeyListener(null);
+							
 							if (driver.getSmoker() == 0) {
 								((CheckBox) findViewById(R.id.dSmoker)).setChecked(false);
 							} else {
 								((CheckBox) findViewById(R.id.dSmoker)).setChecked(true);
 							}
-							
+							((CheckBox) findViewById(R.id.dSmoker)).setKeyListener(null);
+
 						} catch (JSONException e) {
 							e.printStackTrace();
 						}
-						
-						progressMessage.dismiss();
+
+						// progressMessage.dismiss();
 					}
 				});
 

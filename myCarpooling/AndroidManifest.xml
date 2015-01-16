@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--
          The following two permissions are not required to use
-	     Google Maps Android API v2, but are recommended.
+	     Google Maps Android API v2, but are recommended.
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -27,10 +27,10 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CustomActionBarTheme" >
-        
         <meta-data
-	        android:name="com.google.android.gms.version"
-	        android:value="@integer/google_play_services_version" />
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -107,15 +107,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.BARcode.mycarpooling.Driver" />
         </activity>
-        
-        <!-- 
+
+        <!--
         <activity
             android:name=".SearchResults"
             android:label="@string/title_activity_search_results"
             android:parentActivityName=".Passenger" >
-        </activity>
-         -->
-         
+        </activity>
+        -->
+
         <activity
             android:name=".SearchCarpools"
             android:label="@string/title_activity_search_carpools"
@@ -126,20 +126,24 @@
             android:name=".ShowDriverInformation"
             android:label="@string/title_activity_driver_information"
             android:parentActivityName=".SearchCarpools" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.BARcode.mycarpooling.SearchCarpools" />
         </activity>
         
         <activity
             android:name=".AdvancedOptions"
             android:label="@string/title_activity_advanced_options" >
         </activity>
+
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCa5UxSDiklotuUhF2SGY41HfC_lyshxBs" />
     </application>
-    
-</manifest>
 
-<!-- changed google play services to version 17
+</manifest>
+<!--
+     changed google play services to version 17
 	downloaded from here:
-	http://venomvendor.blogspot.co.il/2012/03/android-sdk-extras-by-google-inc.html
- -->
+	http://venomvendor.blogspot.co.il/2012/03/android-sdk-extras-by-google-inc.html
+-->
