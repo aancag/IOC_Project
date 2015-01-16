@@ -19,7 +19,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
+import android.os.Bundle; 
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -154,7 +154,6 @@ public class MainActivity extends Activity {
 				} else {
 					loginIntent.putExtra(LOGIN_INFO, result);//result=json
 					MainActivity.result = new String(result);
-					//TODO - create user object
 					MainActivity.userJsonLoggedIn = new JSONArray(MainActivity.result).getJSONObject(0); 
 					MainActivity.userLoggedIn = new User(userJsonLoggedIn);
 					startActivity(loginIntent);

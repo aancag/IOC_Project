@@ -90,7 +90,6 @@ public class ShowHistory extends Activity {
 				     
 				});
 				
-				
 				progressMessage.dismiss();
 			} catch (Exception e) {
 				Log.e("ERROR:", e.getMessage());

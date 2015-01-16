@@ -1,7 +1,6 @@
 package com.BARcode.mycarpooling;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,15 +31,16 @@ public class AdvancedOptions extends Activity  implements RoutingListener{
 	private int count = 0;
 	private LatLng srcCoord;
 	private LatLng dstCoord;
-	private  Routing routing;
-	
+	private Routing routing;
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_advanced_options);
 		
-		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-		        .getMap();
+		final MapFragment mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map);
+		
+		map = mapFragment.getMap();
 		
         CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(44.51,24.9));
         CameraUpdate zoom = CameraUpdateFactory.zoomTo((float) 5.6);

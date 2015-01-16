@@ -107,11 +107,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.BARcode.mycarpooling.Driver" />
         </activity>
+        
+        <!-- 
         <activity
             android:name=".SearchResults"
             android:label="@string/title_activity_search_results"
             android:parentActivityName=".Passenger" >
         </activity>
+         -->
+         
+        <activity
+            android:name=".SearchCarpools"
+            android:label="@string/title_activity_search_carpools"
+            android:parentActivityName=".Passenger" >
+        </activity>
+        
         <activity
             android:name=".AdvancedOptions"
             android:label="@string/title_activity_advanced_options" >
@@ -120,6 +130,10 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCa5UxSDiklotuUhF2SGY41HfC_lyshxBs" />
     </application>
-
+    
 </manifest>
-<!-- AIzaSyCa5UxSDiklotuUhF2SGY41HfC_lyshxBs -->
+
+<!-- changed google play services to version 17
+	downloaded from here:
+	http://venomvendor.blogspot.co.il/2012/03/android-sdk-extras-by-google-inc.html
+ -->

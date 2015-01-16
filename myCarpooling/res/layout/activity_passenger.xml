@@ -10,8 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.BARcode.mycarpooling.Passenger" >
 
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"/>
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/source"
@@ -44,15 +50,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="@string/search"
-        android:onClick="searchResults" />
+        android:onClick="searchResults"
+        android:text="@string/search" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="@string/advancedOptions"
-        android:onClick="advancedOptions" />
+        android:onClick="advancedOptions"
+        android:text="@string/advancedOptions" />
 
 </LinearLayout>
