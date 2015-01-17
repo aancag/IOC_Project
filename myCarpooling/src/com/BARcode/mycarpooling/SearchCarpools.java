@@ -1,7 +1,6 @@
 package com.BARcode.mycarpooling;
 
 import static com.BARcode.utilities.Constants.SERVER_URL;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
@@ -11,41 +10,45 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Space;
 import android.widget.TextView;
-
 import com.BARcode.databaseModels.Carpool;
 
 public class SearchCarpools extends Activity {
 
 	private LinearLayout lm;
 
+	@SuppressLint("UseSparseArrays")
 	private Map<Integer, Integer> joinButtons = new HashMap<Integer, Integer>();
 	private List<Carpool> carpoolsList = new ArrayList<Carpool>();
 
 	public static final String SHOW_DRIVER_INFO = "SearchCarpools.username";
-	
+
 	public static final String CARPOOL_SOURCE = "SearchCarpools.source";
-	
+
 	public static final String CARPOOL_DEST = "SearchCarpools.destination";
 
 	private String sourceSearch;
@@ -64,6 +67,25 @@ public class SearchCarpools extends Activity {
 		destinationSearch = getIntent().getExtras().getString("destination");
 
 		new SearchCarpoolsConnectDB().execute();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.add_edit_car, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	private ProgressDialog progressMessage;
@@ -90,7 +112,7 @@ public class SearchCarpools extends Activity {
 				intent.putExtra(SHOW_DRIVER_INFO, carpool.getUsername());
 				intent.putExtra(CARPOOL_SOURCE, carpool.getSource());
 				intent.putExtra(CARPOOL_DEST, carpool.getDestination());
-				
+
 				startActivity(intent);
 			}
 		};
@@ -101,6 +123,16 @@ public class SearchCarpools extends Activity {
 			public void onClick(View v) {
 				// find clicked button
 				int id = v.getId();
+
+				int carpoolId = joinButtons.get(id);
+				Carpool carpool = carpoolsList.get(carpoolId);
+
+				String[] params = new String[3];
+				params[0] = carpool.getUsername();
+				params[1] = carpool.getDate();
+				params[2] = carpool.getTime();
+
+				new JoinCarpoolDB().execute(params);
 
 			}
 		};
@@ -351,7 +383,7 @@ public class SearchCarpools extends Activity {
 								joinCarpoolButton.setId((i + 1) * 999);
 								joinCarpoolButton.setOnClickListener(joinCarpoolHandler);
 								joinButtons.put((i + 1) * 999, i);
-								if (carpool.getAvailableSeats() == 0) {
+								if (carpool.getAvailableSeats() <= 0) {
 									joinCarpoolButton.setClickable(false);
 									joinCarpoolButton.setEnabled(false);
 								}
@@ -372,6 +404,97 @@ public class SearchCarpools extends Activity {
 				});
 			} catch (Exception e) {
 				Log.e("ERROR:", e.getMessage());
+			}
+
+			return null;
+		}
+
+	}
+
+	class JoinCarpoolDB extends AsyncTask<String, String, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressMessage = new ProgressDialog(SearchCarpools.this);
+			progressMessage.setMessage("Loading ...");
+			progressMessage.setIndeterminate(false);
+			progressMessage.setCancelable(false);
+			if (progressMessage != null && progressMessage.isShowing()) {
+				progressMessage.cancel();
+			}
+			progressMessage.show();
+		}
+
+		@Override
+		protected Void doInBackground(String... params) {
+			String result = "";
+			String url = SERVER_URL + String.format("update_carpools.php?username=%s&date=%s&time=%s&carpooled_user=%s", 
+					params[0], params[1], params[2], MainActivity.userLoggedIn.getUsername());
+
+			try {
+				HttpClient client = new DefaultHttpClient();
+				HttpGet request = new HttpGet();
+				request.setURI(new URI(url));
+
+				HttpResponse response = client.execute(request);
+				BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+				StringBuilder sb = new StringBuilder();
+				String line = "";
+
+				while ((line = br.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+
+				String[] lines = sb.toString().split("\n");
+				for (int i = 0; i < lines.length - 3; i++) {
+					result += lines[i] + "\n";
+				}
+
+				progressMessage.dismiss();
+				
+				if (result.startsWith("success")) {
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+
+							if (!isFinishing()) {
+								new AlertDialog.Builder(SearchCarpools.this).setTitle("Join Carpool")
+										.setMessage("Carpool joined ^_^!\nAn email was sent to the driver as information").setCancelable(false)
+										.setPositiveButton("OK", new OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												dialog.dismiss();												
+											}
+										}).create().show();
+							}
+							
+							// TODO: send email driver
+						}
+					});
+				} else {
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+
+							if (!isFinishing()) {
+								new AlertDialog.Builder(SearchCarpools.this).setTitle("Join Carpool").setMessage("Carpool couldn't be joined. Please try again :(")
+										.setCancelable(false).setPositiveButton("OK", new OnClickListener() {
+											@Override
+											public void onClick(DialogInterface dialog, int which) {
+												dialog.dismiss();
+											}
+										}).create().show();
+							}
+						}
+					});
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 
 			return null;
