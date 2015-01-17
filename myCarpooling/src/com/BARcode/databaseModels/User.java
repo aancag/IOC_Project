@@ -141,4 +141,10 @@ public class User {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Firstname: " + firstName + " Lastname: " + lastName + " Birth date: " + birthDate + "\nBio:\n" + "\"" + bio + "\""+ "\nEmail: " + email + " Phone: " + phone + "\nCity:" + city
+				+ " Smoker:" + (smoker == 0 ? "no" : "yes");
+	}
 }

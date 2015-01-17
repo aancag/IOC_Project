@@ -111,5 +111,11 @@ public class Carpool {
 	public void setCommutePeriod(int commutePeriod) {
 		this.commutePeriod = commutePeriod;
 	}
-		
+
+	@Override
+	public String toString() {
+		return "Source: " + source + " Destination: " + destination + "\nDate: " + date + " Time: " + time + "\nAvailable seats:" + availableSeats + " Price: " + price
+				+ " Duration: " + duration;
+	}		
+	
 }

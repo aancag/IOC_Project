@@ -11,6 +11,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -124,13 +126,11 @@ public class Passenger extends Activity implements RoutingListener {
 
 	@Override
 	public void onRoutingFailure() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onRoutingStart() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -153,6 +153,25 @@ public class Passenger extends Activity implements RoutingListener {
 	      options.position(dstCoord);
 	      //options.icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green));  
 	      map.addMarker(options);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.add_edit_car, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 	/************************** END INTERFACE ***************************/

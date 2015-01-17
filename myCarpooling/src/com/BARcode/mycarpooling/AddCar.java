@@ -111,28 +111,6 @@ public class AddCar extends Activity {
 		}
 	}
 
-	class EditCarDB extends AsyncTask<String, String, Void> {
-
-		private ProgressDialog progressMessage;
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			progressMessage = new ProgressDialog(AddCar.this);
-			progressMessage.setMessage("Loading ...");
-			progressMessage.setIndeterminate(false);
-			progressMessage.setCancelable(false);
-			progressMessage.show();
-		}
-
-		@Override
-		protected Void doInBackground(String... params) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-	}
-
 	class AddCarIntoDB extends AsyncTask<String, String, Void> {
 
 		private ProgressDialog progressMessage;

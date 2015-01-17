@@ -120,13 +120,11 @@ public class AdvancedOptions extends Activity  implements RoutingListener{
 
 	@Override
 	public void onRoutingFailure() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onRoutingStart() {
-		// TODO Auto-generated method stub
 		
 	}
 

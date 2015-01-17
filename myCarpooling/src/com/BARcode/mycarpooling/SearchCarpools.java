@@ -1,6 +1,9 @@
 package com.BARcode.mycarpooling;
 
+import static com.BARcode.utilities.Constants.EMAIL_PASSWORD;
+import static com.BARcode.utilities.Constants.EMAIL_USERNAME;
 import static com.BARcode.utilities.Constants.SERVER_URL;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
@@ -10,19 +13,23 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,7 +42,10 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Space;
 import android.widget.TextView;
+
 import com.BARcode.databaseModels.Carpool;
+import com.kristijandraca.backgroundmaillibrary.BackgroundMail;
+import com.kristijandraca.backgroundmaillibrary.Utils;
 
 public class SearchCarpools extends Activity {
 
@@ -55,6 +65,10 @@ public class SearchCarpools extends Activity {
 
 	private String destinationSearch;
 
+	private Context context;
+	
+	private Carpool carpool;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,6 +80,8 @@ public class SearchCarpools extends Activity {
 
 		destinationSearch = getIntent().getExtras().getString("destination");
 
+		context = this;
+
 		new SearchCarpoolsConnectDB().execute();
 	}
 
@@ -75,7 +91,7 @@ public class SearchCarpools extends Activity {
 		getMenuInflater().inflate(R.menu.add_edit_car, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -125,12 +141,13 @@ public class SearchCarpools extends Activity {
 				int id = v.getId();
 
 				int carpoolId = joinButtons.get(id);
-				Carpool carpool = carpoolsList.get(carpoolId);
+				carpool = carpoolsList.get(carpoolId);
 
 				String[] params = new String[3];
 				params[0] = carpool.getUsername();
 				params[1] = carpool.getDate();
 				params[2] = carpool.getTime();
+				
 
 				new JoinCarpoolDB().execute(params);
 
@@ -158,7 +175,10 @@ public class SearchCarpools extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-			String url = SERVER_URL + String.format("get_carpools_src_dst.php?source=%s&destination=%s", sourceSearch, destinationSearch);
+			String url = SERVER_URL + String.format("get_carpools_src_dst.php?source=%s&destination=%s&logged_user=%s", 
+					sourceSearch, 
+					destinationSearch,
+					MainActivity.userLoggedIn.getUsername());
 			try {
 				HttpClient client = new DefaultHttpClient();
 				HttpGet request = new HttpGet();
@@ -412,25 +432,28 @@ public class SearchCarpools extends Activity {
 	}
 
 	class JoinCarpoolDB extends AsyncTask<String, String, Void> {
+//
+//		@Override
+//		protected void onPreExecute() {
+//			super.onPreExecute();
+//			progressMessage = new ProgressDialog(SearchCarpools.this);
+//			progressMessage.setMessage("Loading ...");
+//			progressMessage.setIndeterminate(false);
+//			progressMessage.setCancelable(false);
+//			if (progressMessage != null && progressMessage.isShowing()) {
+//				progressMessage.cancel();
+//			}
+//			progressMessage.show();
+//		}
 
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			progressMessage = new ProgressDialog(SearchCarpools.this);
-			progressMessage.setMessage("Loading ...");
-			progressMessage.setIndeterminate(false);
-			progressMessage.setCancelable(false);
-			if (progressMessage != null && progressMessage.isShowing()) {
-				progressMessage.cancel();
-			}
-			progressMessage.show();
-		}
+		String result = "";
 
 		@Override
 		protected Void doInBackground(String... params) {
-			String result = "";
-			String url = SERVER_URL + String.format("update_carpools.php?username=%s&date=%s&time=%s&carpooled_user=%s", 
-					params[0], params[1], params[2], MainActivity.userLoggedIn.getUsername());
+			// update_carpools also retrieves user email
+
+			String url = SERVER_URL
+					+ String.format("update_carpools.php?username=%s&date=%s&time=%s&carpooled_user=%s", params[0], params[1], params[2], MainActivity.userLoggedIn.getUsername());
 
 			try {
 				HttpClient client = new DefaultHttpClient();
@@ -452,8 +475,6 @@ public class SearchCarpools extends Activity {
 					result += lines[i] + "\n";
 				}
 
-				progressMessage.dismiss();
-				
 				if (result.startsWith("success")) {
 					runOnUiThread(new Runnable() {
 
@@ -466,12 +487,32 @@ public class SearchCarpools extends Activity {
 										.setPositiveButton("OK", new OnClickListener() {
 											@Override
 											public void onClick(DialogInterface dialog, int which) {
-												dialog.dismiss();												
+												dialog.dismiss();
 											}
 										}).create().show();
 							}
-							
+
 							// TODO: send email driver
+							// get email from JSON
+							result = result.replace("success", "");
+							String email = "";
+							try {
+								JSONArray jArray = new JSONArray(result);
+
+								for (int i = 0; i < jArray.length(); i++) {
+									try {
+										JSONObject object = jArray.getJSONObject(i);
+										email = object.getString("email");
+
+									} catch (JSONException e) {
+										// Oops
+									}
+								}
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+
+							sendEmail(email);
 						}
 					});
 				} else {
@@ -500,6 +541,25 @@ public class SearchCarpools extends Activity {
 			return null;
 		}
 
+	}
+
+	/******************* SEND EMAIL ********************/
+	private void sendEmail(String email) {
+		BackgroundMail bm = new BackgroundMail(context);
+		bm.setGmailUserName(EMAIL_USERNAME);
+		bm.setGmailPassword(Utils.decryptIt(EMAIL_PASSWORD));
+		bm.setMailTo(email);
+		bm.setFormSubject("Join carpool request");
+				
+		String body = String.format("Hello %s,\n\n User %s wants to join one of your rides:\n%s\n\n Details about user %s:\n%s.\n\n Enjoy your ride,\nBARcode team :)",
+				carpool.getUsername(),
+				MainActivity.userLoggedIn.getUsername(),
+				carpool.toString(),
+				MainActivity.userLoggedIn.getUsername(),
+				MainActivity.userLoggedIn.toString()); 
+		
+		bm.setFormBody(body);
+		bm.send();
 	}
 
 }

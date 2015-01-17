@@ -28,7 +28,6 @@ public class Driver extends Activity {
 		try {
 			data = new JSONArray(MainActivity.result).getJSONObject(0);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		User user = new User(data);

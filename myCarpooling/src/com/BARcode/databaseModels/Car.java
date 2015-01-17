@@ -19,7 +19,6 @@ public class Car {
 			this.seats = carDB.getInt("seats");
 			this.year = carDB.getInt("year");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

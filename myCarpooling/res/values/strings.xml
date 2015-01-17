@@ -63,7 +63,7 @@
     <string name="commutePeriod">Commute Period</string>
     <string name="search">Search</string>
     <string name="advancedOptions">Advanced Options</string>
-    <string name="title_activity_choose_role">ChooseRole</string>
+    <string name="title_activity_choose_role">Choose Role</string>
     <string name="title_activity_passenger">Passenger</string>
     <string name="title_activity_driver">Driver</string>
     <string name="title_activity_add_car">AddCar</string>
