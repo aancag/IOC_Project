@@ -15,12 +15,14 @@ public class ChooseRole extends Activity {
 	
 	//cand dai click pe poza driver-ului
 	public void LogoDriver(View view){
+		MainActivity.isDriver = true;
 		Intent intent = new Intent(this, Driver.class);
 		startActivity(intent);
 	}
 
 	//cand dai click pe poza passenger-ului
 	public void LogoPassenger(View view){
+		MainActivity.isDriver = false;
 		Intent intent = new Intent(this, Passenger.class);
 		startActivity(intent);
 	}

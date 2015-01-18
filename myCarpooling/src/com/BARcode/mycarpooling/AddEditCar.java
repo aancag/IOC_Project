@@ -33,7 +33,6 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -66,13 +65,6 @@ public class AddEditCar extends Activity {
 		username = MainActivity.userLoggedIn.getUsername();
 		new AddEditCarConnectDB().execute(username);
 
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_edit_car, menu);
-		return true;
 	}
 
 	public void addNewCar(View view) {

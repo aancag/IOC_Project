@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -41,14 +40,7 @@ public class AddCarpool2 extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_carpool2);
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_carpool2, menu);
-		return true;
-	}
-
+    
 	public void finishAddCarpool(View view) {
 		EditText seatsNumberET = (EditText) findViewById(R.id.seatsNumber);
 		RadioButton onlyOnce = (RadioButton) findViewById(R.id.once);

@@ -41,6 +41,9 @@ public class MainActivity extends Activity {
 	public static JSONObject userJsonLoggedIn;
 	public static User userLoggedIn;
 	
+	// know where to return from UserProfile
+	public static boolean isDriver; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

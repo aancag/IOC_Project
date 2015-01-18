@@ -3,6 +3,7 @@ package com.BARcode.mycarpooling;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -27,6 +28,23 @@ public class UserInformation1 extends Activity {
 		((EditText) findViewById(R.id.birthDateUI)).setText(user.getBirthDate());
 		((EditText) findViewById(R.id.bioUI)).setText(user.getBio());
 		
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == 16908332) {
+			Class<?> goUpClass = MainActivity.isDriver ? Driver.class : Passenger.class;
+			Intent intent = new Intent(UserInformation1.this, goUpClass);
+			startActivity(intent);
+			
+			return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 	
 	// go to next page which displays joined carpools

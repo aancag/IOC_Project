@@ -19,7 +19,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.ExpandableListView;
 
 import com.BARcode.databaseModels.Carpool;
@@ -32,7 +31,7 @@ public class ShowHistory extends Activity {
 	public ExpandableListView Exp_list;
 	public List<String> carpools;
 	public CarpoolAdapter adapter;
-	
+
 	class ShowHistoryDB extends AsyncTask<String, String, String> {
 
 		private ProgressDialog progressMessage;
@@ -50,8 +49,7 @@ public class ShowHistory extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			String username = (String) params[0];
-			String link = String.format(com.BARcode.utilities.Constants.SERVER_URL
-					+ "/get_carpools.php?username=%s", username);
+			String link = String.format(com.BARcode.utilities.Constants.SERVER_URL + "/get_carpools.php?username=%s", username);
 
 			try {
 				HttpClient client = new DefaultHttpClient();
@@ -59,8 +57,7 @@ public class ShowHistory extends Activity {
 				request.setURI(new URI(link));
 
 				HttpResponse response = client.execute(request);
-				BufferedReader br = new BufferedReader(new InputStreamReader(
-						response.getEntity().getContent()));
+				BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
 				StringBuilder sb = new StringBuilder();
 				String line = "";
@@ -74,21 +71,20 @@ public class ShowHistory extends Activity {
 					dBcarpoolHistory += lines[i] + "\n";
 				}
 				runOnUiThread(new Runnable() {
-				     @Override
-				     public void run() {
-				    	List<Carpool> all = getDB();
-				 		for(int i = 0; i < all.size(); i++){
-				 			carpoolHistory.put(all.get(i).getDate() + " " + all.get(i).getTime(), all.get(i).getInfo());
-				 		}
-				 		Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
-				 		carpools = new ArrayList<String>(carpoolHistory.keySet());
-				 		adapter = new CarpoolAdapter(ShowHistory.this, carpoolHistory, carpools);
-				 		Exp_list.setAdapter(adapter);
-				    }
-				     
-				     
+					@Override
+					public void run() {
+						List<Carpool> all = getDB();
+						for (int i = 0; i < all.size(); i++) {
+							carpoolHistory.put(all.get(i).getDate() + " " + all.get(i).getTime(), all.get(i).getInfo());
+						}
+						Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
+						carpools = new ArrayList<String>(carpoolHistory.keySet());
+						adapter = new CarpoolAdapter(ShowHistory.this, carpoolHistory, carpools);
+						Exp_list.setAdapter(adapter);
+					}
+
 				});
-				
+
 				progressMessage.dismiss();
 			} catch (Exception e) {
 				Log.e("ERROR:", e.getMessage());
@@ -97,39 +93,33 @@ public class ShowHistory extends Activity {
 		}
 
 	}
-	public List<Carpool> getDB(){
+
+	public List<Carpool> getDB() {
 		List<Carpool> carpoolHistoryList = new ArrayList<Carpool>();
-		
+
 		JSONArray ja = null;
-	
-			try {
-				ja = new JSONArray(dBcarpoolHistory);
-				for(int i = 0; i < ja.length(); i++){
-					Carpool c = new Carpool(ja.getJSONObject(i));
-					carpoolHistoryList.add(c);
-				}
-				
-			} catch (JSONException e) {
-				e.printStackTrace();
+
+		try {
+			ja = new JSONArray(dBcarpoolHistory);
+			for (int i = 0; i < ja.length(); i++) {
+				Carpool c = new Carpool(ja.getJSONObject(i));
+				carpoolHistoryList.add(c);
 			}
-			return carpoolHistoryList;
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return carpoolHistoryList;
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_history);
-		
+
 		carpoolHistory = new HashMap<String, List<String>>();
 		new ShowHistoryDB().execute(MainActivity.userLoggedIn.getUsername());
-		
-		
+
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.show_history, menu);
-		return true;
-	}
 }

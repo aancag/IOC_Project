@@ -158,7 +158,7 @@ public class Passenger extends Activity implements RoutingListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_edit_car, menu);
+		getMenuInflater().inflate(R.menu.user_information, menu);
 		return true;
 	}
 	
@@ -169,30 +169,19 @@ public class Passenger extends Activity implements RoutingListener {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			Intent intent = new Intent(Passenger.this, UserInformation1.class);
+			startActivity(intent);			
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
 	/************************** END INTERFACE ***************************/
-	public void searchResults(View view){
-	/*	EditText source = (EditText) findViewById(R.id.sourcePassenger);
-		EditText destination = (EditText) findViewById(R.id.destinationPassenger);
-		
-		Intent intent = new Intent(this, SearchResults.class);
-		intent.putExtra("source", source.getText().toString());
-		intent.putExtra("destination", destination.getText().toString());
-		
-		startActivity(intent);*/
-		
+	public void searchResults(View view){		
 		Intent intent = new Intent(this, SearchCarpools.class);
 		intent.putExtra("source", ((EditText) findViewById(R.id.sourcePassenger)).getText().toString());
 		intent.putExtra("destination", ((EditText) findViewById(R.id.destinationPassenger)).getText().toString());
 		startActivity(intent);
-	}
-	
-	public void advancedOptions(View view){
-		//Intent intent = new Intent(this, AdvancedOptions.class);
-		//startActivity(intent);
 	}
 }

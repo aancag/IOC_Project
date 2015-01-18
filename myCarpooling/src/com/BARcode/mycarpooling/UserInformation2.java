@@ -343,8 +343,7 @@ public class UserInformation2 extends Activity {
 	}
 
 	class UpdateUsersDB extends AsyncTask<String, String, String> {		
-		
-		
+				
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -376,7 +375,7 @@ public class UserInformation2 extends Activity {
 				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(10);
 		        nameValuePairs.add(new BasicNameValuePair("username", user.getUsername()));
 		        nameValuePairs.add(new BasicNameValuePair("password", user.getPassword()));
-		        nameValuePairs.add(new BasicNameValuePair("email", user.getPassword()));
+		        nameValuePairs.add(new BasicNameValuePair("email", user.getEmail()));
 		        nameValuePairs.add(new BasicNameValuePair("phone", user.getPhone()));
 		        nameValuePairs.add(new BasicNameValuePair("firstName", user.getFirstName()));
 		        nameValuePairs.add(new BasicNameValuePair("lastName", user.getLastName()));
@@ -423,7 +422,8 @@ public class UserInformation2 extends Activity {
 														public void onClick(
 																DialogInterface dialog,
 																int which) {
-															Intent intent = new Intent(UserInformation2.this, Passenger.class);
+															Class<?> goUpClass = MainActivity.isDriver ? Driver.class : Passenger.class;
+															Intent intent = new Intent(UserInformation2.this, goUpClass);
 															startActivity(intent);
 														}
 													}).create().show();

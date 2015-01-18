@@ -17,13 +17,6 @@ public class AddCarpool extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_carpool);
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_carpool, menu);
-		return true;
-	}
 	
 	//cand se intra pe butonul de next
 	public void nextOptions(View view){

@@ -14,18 +14,16 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import com.BARcode.databaseModels.Carpool;
-import com.BARcode.utilities.CarpoolAdapter;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ExpandableListView;
+
+import com.BARcode.databaseModels.Carpool;
+import com.BARcode.utilities.CarpoolAdapter;
 
 public class SearchResults extends Activity {
 
@@ -48,13 +46,6 @@ public class SearchResults extends Activity {
 		new SearchResultsDB().execute(source, destination);
 		/*EditText test = (EditText) findViewById(R.id.mere);
 		test.setText(source + " " + destination);*/
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.search_results, menu);
-		return true;
 	}
 
 	@Override
