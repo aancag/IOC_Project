@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">myCarpooling</string>
+    <string name="app_name">Ia-ma, nene!</string>
     <string name="username">Username</string>
     <string name="usernameHint">Enter your username!</string>
     <string name="password">Password</string>

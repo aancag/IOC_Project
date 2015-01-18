@@ -48,8 +48,8 @@ public class Passenger extends Activity implements RoutingListener {
 		
 		map = mapFragment.getMap();
 		
-        CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(44.51,24.9));
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo((float) 5.6);
+        CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(46.10, 25.19));
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo((float) 4);
 
         map.moveCamera(center);
         map.animateCamera(zoom);
