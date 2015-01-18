@@ -89,10 +89,15 @@
             android:label="@string/title_activity_add_carpool"
             android:parentActivityName=".Driver" >
         </activity>
-        <activity
+         <activity
             android:name=".AddCarpool2"
             android:label="@string/title_activity_add_carpool2"
             android:parentActivityName=".AddCarpool" >
+        </activity>
+        <activity
+            android:name=".AddCarpool3"
+            android:label="@string/title_activity_add_carpool3"
+            android:parentActivityName=".AddCarpool2" >
         </activity>
         <activity
             android:name=".ShowHistory"

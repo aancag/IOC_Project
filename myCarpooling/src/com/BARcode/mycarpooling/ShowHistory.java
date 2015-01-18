@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -52,7 +51,7 @@ public class ShowHistory extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			String username = (String) params[0];
-			String link = String.format(com.BARcode.utilities.Constants.SERVER_URL + "/get_carpools.php?username=%s", username);
+			String link = String.format(com.BARcode.utilities.Constants.SERVER_URL + "get_carpools.php?username=%s", username);
 
 			try {
 				HttpClient client = new DefaultHttpClient();
@@ -82,7 +81,7 @@ public class ShowHistory extends Activity {
 						}
 						Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
 						carpools = new ArrayList<String>(carpoolHistory.keySet());
-						//TODO - sort carpoolHistory
+						
 						Collections.sort(carpools, new Comparator<String>(){
 
 							@Override

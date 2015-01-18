@@ -45,8 +45,21 @@ public class Carpool {
 		info.add("Available Seats: " + this.availableSeats);
 		info.add("Price: " + this.price + " RON");
 		info.add("Duration: " + this.duration + " H");
-		info.add("Itinerary: " + this.itinerary);
-		info.add("Commute Period: " + this.commutePeriod);
+		
+		String text = "";
+		switch (this.getCommutePeriod()) {
+		case 1:
+			text = "only once";
+			break;
+		case 2:
+			text = "daily";
+			break;
+		default:
+			text = "weekly";
+			break;
+		}
+		
+		info.add("Commute Period: " + text);
 		
 		return info;
 	}

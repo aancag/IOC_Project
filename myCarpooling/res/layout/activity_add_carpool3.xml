@@ -8,55 +8,67 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.BARcode.mycarpooling.AddCarpool" >
-
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.75" />
+    tools:context="com.BARcode.mycarpooling.AddCarpool3" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/source"
+        android:text="@string/seatsNo"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <!-- Dummy item to prevent TextView from receiving focus -->
-
-    <LinearLayout
-        android:layout_width="0px"
-        android:layout_height="0px"
-        android:focusable="true"
-        android:focusableInTouchMode="true" />
-
     <EditText
-        android:id="@+id/addSource"
+        android:id="@+id/seatsNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:nextFocusLeft="@id/addSource"
-        android:nextFocusUp="@id/addSource" />
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/destination"
+        android:text="@string/commutePeriod"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/addDestination"
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/once"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="only once" />
+
+        <RadioButton
+            android:id="@+id/daily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="daily" />
+
+        <RadioButton
+            android:id="@+id/weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="weekly" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/itinerary"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <!-- TextView will appear if not all fields are completed -->
 
     <TextView
-        android:id="@+id/notAllFieldsCompletedAC"
+        android:id="@+id/notAllFieldsCompletedAC3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -66,11 +78,11 @@
         android:visibility="invisible" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/finishAddCarpool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:onClick="nextOptions"
-        android:text="@string/next" />
+        android:onClick="finishAddCarpool"
+        android:text="@string/finishRegistration" />
 
 </LinearLayout>

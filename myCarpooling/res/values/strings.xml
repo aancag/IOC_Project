@@ -69,6 +69,7 @@
     <string name="title_activity_add_car">Add Car</string>
     <string name="title_activity_add_carpool">Add Carpool - Step 1</string>
     <string name="title_activity_add_carpool2">Add Carpool - Step 2</string>
+    <string name="title_activity_add_carpool3">Add Carpool - Step 3</string>
     <string name="userExists">Username already exists in database! Please choose a different username!</string>
     <string name="title_activity_show_history">Show History</string>
     <string name="birthDateHint">Enter date in format: YYYY-MM-DD</string>
