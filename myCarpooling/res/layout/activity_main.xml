@@ -2,21 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
-    <!-- TODO: create custom icon - Ia-ma, nene! -->
-    
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher_web" />
+
+    <!--
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FC4A4A"
+        android:fontFamily="Courier"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:text="The application which takes you to ZIUA IZABELLEI!" />
+    -->
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
         android:text="@string/username" />
 
     <EditText
@@ -26,6 +43,7 @@
         android:ems="10"
         android:hint="@string/usernameHint"
         android:inputType="textPersonName" >
+
         <requestFocus />
     </EditText>
 
@@ -33,22 +51,24 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/password"
-         />
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="@string/password" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" 
-        android:hint="@string/password"/>
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
         android:onClick="logIN"
         android:text="@string/logIn" />
 
@@ -57,18 +77,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/signUp" 
-        android:onClick="signUP"/>
-    
-    <!-- This TextView will appear if login was unsuccessful-->
-    <TextView 
+        android:onClick="signUP"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:text="@string/signUp" />
+
+    <!-- This TextView will appear if login was unsuccessful -->
+
+    <TextView
         android:id="@+id/loginFailed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/loginFailed" 
-        android:visibility="invisible"
         android:layout_gravity="center"
+        android:text="@string/loginFailed"
         android:textColor="#FC4A4A"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        android:visibility="invisible" />
 
 </LinearLayout>
