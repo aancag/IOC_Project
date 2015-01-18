@@ -63,11 +63,17 @@
         android:text="@string/joinedCarpools"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/joinedCarpoolsLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button1"
