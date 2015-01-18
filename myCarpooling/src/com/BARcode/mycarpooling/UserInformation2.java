@@ -57,6 +57,7 @@ public class UserInformation2 extends Activity {
 		setContentView(R.layout.activity_user_information_2);
 
 		((EditText) findViewById(R.id.emailUI)).setText(user.getEmail());
+		
 		((EditText) findViewById(R.id.phoneUI)).setText(user.getPhone());
 		((EditText) findViewById(R.id.cityUI)).setText(user.getCity());
 		((CheckBox) findViewById(R.id.smokerUI)).setChecked(user.getSmoker() == 1);
