@@ -100,7 +100,7 @@ public class SignUpActivity2 extends Activity {
 		@Override
 		protected String doInBackground(String... params) {
 			String result = "";
-			String url = SERVER_URL + "/insert_into_users.php";
+			String url = SERVER_URL + "insert_into_users.php";
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpResponse httpResponse;
 			InputStream is = null;

@@ -3,6 +3,7 @@ package com.BARcode.mycarpooling;
 import static com.BARcode.utilities.Constants.SERVER_URL;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
@@ -11,17 +12,26 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -59,8 +69,15 @@ public class UserInformation2 extends Activity {
 
 	// save changes in DB
 	public void saveChangesIntoDB(View view) {
-
+		// take changes
+		user.setEmail(((EditText) findViewById(R.id.emailUI)).getText().toString());
+		user.setPhone(((EditText) findViewById(R.id.phoneUI)).getText().toString());
+		user.setCity(((EditText) findViewById(R.id.cityUI)).getText().toString());
+		user.setSmoker(((CheckBox) findViewById(R.id.smokerUI)).isChecked() ? 1 : 0);
+		
 		MainActivity.userLoggedIn = user;
+		
+		new UpdateUsersDB().execute();
 	}
 
 	/************ get joined carpools ************/
@@ -325,4 +342,131 @@ public class UserInformation2 extends Activity {
 
 	}
 
+	class UpdateUsersDB extends AsyncTask<String, String, String> {		
+		
+		
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressMessage = new ProgressDialog(UserInformation2.this);
+			progressMessage.setMessage("Loading ...");
+			progressMessage.setIndeterminate(false);
+			progressMessage.setCancelable(false);
+			if (progressMessage != null && progressMessage.isShowing()) {
+				progressMessage.cancel();
+			}
+			progressMessage.show();
+		}
+
+		@Override
+		protected void onPostExecute(String file_url) {
+			// dismiss the dialog once done
+			progressMessage.dismiss();
+		}
+		
+		@Override
+		protected String doInBackground(String... params) {
+			String result = "";
+			String url = SERVER_URL + "update_users.php";
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpResponse httpResponse;
+			InputStream is = null;
+			
+			try {			
+				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(10);
+		        nameValuePairs.add(new BasicNameValuePair("username", user.getUsername()));
+		        nameValuePairs.add(new BasicNameValuePair("password", user.getPassword()));
+		        nameValuePairs.add(new BasicNameValuePair("email", user.getPassword()));
+		        nameValuePairs.add(new BasicNameValuePair("phone", user.getPhone()));
+		        nameValuePairs.add(new BasicNameValuePair("firstName", user.getFirstName()));
+		        nameValuePairs.add(new BasicNameValuePair("lastName", user.getLastName()));
+		        nameValuePairs.add(new BasicNameValuePair("city", user.getCity()));
+		        nameValuePairs.add(new BasicNameValuePair("birthDate", user.getBirthDate()));
+		        nameValuePairs.add(new BasicNameValuePair("smoker", "" + user.getSmoker()));
+		        nameValuePairs.add(new BasicNameValuePair("bio", user.getBio()));
+
+				HttpPost httpPost = new HttpPost(url);
+				httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				
+				httpResponse = httpClient.execute(httpPost);
+				
+				// check response
+				if (httpResponse != null) {
+					is = httpResponse.getEntity().getContent();
+					BufferedReader br = new BufferedReader(
+							new InputStreamReader(is));
+					StringBuilder sb = new StringBuilder();
+					String line = "";
+
+					while ((line = br.readLine()) != null) {
+						sb.append(line + "\n");
+					}
+
+					is.close();
+					result = sb.toString();
+
+					if (result.startsWith("success")) {
+						runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+
+								if (!isFinishing()) {
+									new AlertDialog.Builder(
+											UserInformation2.this)
+											.setTitle("User Information")
+											.setMessage("User information updated successfully!")
+											.setCancelable(false)
+											.setPositiveButton("OK",
+													new OnClickListener() {
+														@Override
+														public void onClick(
+																DialogInterface dialog,
+																int which) {
+															Intent intent = new Intent(UserInformation2.this, Passenger.class);
+															startActivity(intent);
+														}
+													}).create().show();
+								}
+							}
+						});
+					} else {
+						runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+
+								if (!isFinishing()) {
+									new AlertDialog.Builder(
+											UserInformation2.this)
+											.setTitle("User Information")
+											.setMessage("Failed updating user information. Please try once again")
+											.setCancelable(false)
+											.setPositiveButton("OK",
+													new OnClickListener() {
+														@Override
+														public void onClick(
+																DialogInterface dialog,
+																int which) {
+															Intent intent = new Intent(UserInformation2.this, UserInformation1.class);
+															startActivity(intent);
+														}
+													}).create().show();
+								}
+							}
+						});
+					}
+				} else {
+					Log.e("POST:", "HTTP RESPONSE IS NULL");
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			return null;
+		}
+		
+	}
 }
