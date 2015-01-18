@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.RatingBar;
 
 import com.BARcode.databaseModels.User;
@@ -17,13 +16,12 @@ import com.BARcode.databaseModels.User;
 public class Driver extends Activity {
 
 	private RatingBar ratingBar;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_driver);
-		EditText availableCarpool = (EditText)findViewById(R.id.availableCarpool);
-		
+
 		JSONObject data = null;
 		try {
 			data = new JSONArray(MainActivity.result).getJSONObject(0);
@@ -31,14 +29,11 @@ public class Driver extends Activity {
 			e.printStackTrace();
 		}
 		User user = new User(data);
-		
+
 		ratingBar = (RatingBar) findViewById(R.id.ratingBar1);
 		ratingBar.setRating(user.getRankingDriver());
 		ratingBar.setIsIndicator(true);
-	
-		
-		availableCarpool.setText(user.getEmail());
-	
+
 	}
 
 	@Override
@@ -48,17 +43,19 @@ public class Driver extends Activity {
 		return true;
 	}
 
-	public void addCar(View view){
+	public void addCar(View view) {
 		Intent intent = new Intent(this, AddEditCar.class);
-    	startActivity(intent);
+		startActivity(intent);
 	}
-	public void addCarpool(View view){
+
+	public void addCarpool(View view) {
 		Intent intent = new Intent(this, AddCarpool.class);
-    	startActivity(intent);
+		startActivity(intent);
 	}
-	public void showHistory(View view){
+
+	public void showHistory(View view) {
 		Intent intent = new Intent(this, ShowHistory.class);
-    	startActivity(intent);
+		startActivity(intent);
 	}
-	
+
 }

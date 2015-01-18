@@ -145,6 +145,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "Firstname: " + firstName + " Lastname: " + lastName + " Birth date: " + birthDate + "\nBio:\n" + "\"" + bio + "\""+ "\nEmail: " + email + " Phone: " + phone + "\nCity:" + city
-				+ " Smoker:" + (smoker == 0 ? "no" : "yes");
+				+ " Smoker: " + (smoker == 0 ? "no" : "yes");
 	}
 }

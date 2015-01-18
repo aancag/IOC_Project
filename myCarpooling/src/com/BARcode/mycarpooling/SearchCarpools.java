@@ -66,7 +66,7 @@ public class SearchCarpools extends Activity {
 	private String destinationSearch;
 
 	private Context context;
-	
+
 	private Carpool carpool;
 
 	@Override
@@ -88,7 +88,7 @@ public class SearchCarpools extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_edit_car, menu);
+		getMenuInflater().inflate(R.menu.user_information, menu);
 		return true;
 	}
 
@@ -98,9 +98,18 @@ public class SearchCarpools extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (id) {
+		case 16908332:
+			// up button
+			onBackPressed();
+			return true;
+		case R.id.action_settings:
+			Intent intent = new Intent(SearchCarpools.this, UserInformation1.class);
+			startActivity(intent);			
+			
 			return true;
 		}
+
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -147,7 +156,6 @@ public class SearchCarpools extends Activity {
 				params[0] = carpool.getUsername();
 				params[1] = carpool.getDate();
 				params[2] = carpool.getTime();
-				
 
 				new JoinCarpoolDB().execute(params);
 
@@ -175,10 +183,8 @@ public class SearchCarpools extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-			String url = SERVER_URL + String.format("get_carpools_src_dst.php?source=%s&destination=%s&logged_user=%s", 
-					sourceSearch, 
-					destinationSearch,
-					MainActivity.userLoggedIn.getUsername());
+			String url = SERVER_URL
+					+ String.format("get_carpools_src_dst.php?source=%s&destination=%s&logged_user=%s", sourceSearch, destinationSearch, MainActivity.userLoggedIn.getUsername());
 			try {
 				HttpClient client = new DefaultHttpClient();
 				HttpGet request = new HttpGet();
@@ -432,19 +438,19 @@ public class SearchCarpools extends Activity {
 	}
 
 	class JoinCarpoolDB extends AsyncTask<String, String, Void> {
-//
-//		@Override
-//		protected void onPreExecute() {
-//			super.onPreExecute();
-//			progressMessage = new ProgressDialog(SearchCarpools.this);
-//			progressMessage.setMessage("Loading ...");
-//			progressMessage.setIndeterminate(false);
-//			progressMessage.setCancelable(false);
-//			if (progressMessage != null && progressMessage.isShowing()) {
-//				progressMessage.cancel();
-//			}
-//			progressMessage.show();
-//		}
+		//
+		// @Override
+		// protected void onPreExecute() {
+		// super.onPreExecute();
+		// progressMessage = new ProgressDialog(SearchCarpools.this);
+		// progressMessage.setMessage("Loading ...");
+		// progressMessage.setIndeterminate(false);
+		// progressMessage.setCancelable(false);
+		// if (progressMessage != null && progressMessage.isShowing()) {
+		// progressMessage.cancel();
+		// }
+		// progressMessage.show();
+		// }
 
 		String result = "";
 
@@ -492,7 +498,6 @@ public class SearchCarpools extends Activity {
 										}).create().show();
 							}
 
-							// TODO: send email driver
 							// get email from JSON
 							result = result.replace("success", "");
 							String email = "";
@@ -543,21 +548,17 @@ public class SearchCarpools extends Activity {
 
 	}
 
-	/******************* SEND EMAIL ********************/
+	/******************* SEND EMAIL *******************/
 	private void sendEmail(String email) {
 		BackgroundMail bm = new BackgroundMail(context);
 		bm.setGmailUserName(EMAIL_USERNAME);
 		bm.setGmailPassword(Utils.decryptIt(EMAIL_PASSWORD));
 		bm.setMailTo(email);
 		bm.setFormSubject("Join carpool request");
-				
+
 		String body = String.format("Hello %s,\n\n User %s wants to join one of your rides:\n%s\n\n Details about user %s:\n%s.\n\n Enjoy your ride,\nBARcode team :)",
-				carpool.getUsername(),
-				MainActivity.userLoggedIn.getUsername(),
-				carpool.toString(),
-				MainActivity.userLoggedIn.getUsername(),
-				MainActivity.userLoggedIn.toString()); 
-		
+				carpool.getUsername(), MainActivity.userLoggedIn.getUsername(), carpool.toString(), MainActivity.userLoggedIn.getUsername(), MainActivity.userLoggedIn.toString());
+
 		bm.setFormBody(body);
 		bm.send();
 	}
